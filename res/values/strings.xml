@@ -4,5 +4,12 @@
     <string name="app_name">projetAndroid</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <string name="map">Plan</string>
+    <string name="schedule">Planing</string>
+    <string name="info">Informations pratiques</string>
+    <string name="historic">Historique du parc</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="shops">Boutiques</string>
 
 </resources>
