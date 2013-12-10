@@ -3,3 +3,4 @@ gen
 proguard-project.txt
 project.properties
 /project.properties
+*.log
