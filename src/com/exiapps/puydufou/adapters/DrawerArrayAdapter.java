@@ -1,4 +1,4 @@
-package com.exiapps.puydufou.arrayadapters;
+package com.exiapps.puydufou.adapters;
 
 
 import com.exiapps.puydufou.R;
