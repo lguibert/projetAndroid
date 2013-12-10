@@ -3,7 +3,6 @@ package com.exiapps.puydufou.view;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -14,6 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.exiapps.puydufou.R;
+import com.exiapps.puydufou.adapters.AbstractFragmentPagerAdater;
 import com.exiapps.puydufou.adapters.DrawerArrayAdapter;
 import com.exiapps.puydufou.adapters.InformationPagerAdapter;
 import com.exiapps.puydufou.adapters.MapPagerAdapter;
@@ -22,7 +22,8 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 	private ListView listView;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private DrawerLayout drawerLayout;
-	private PagerAdapter mPagerAdapter;
+	private AbstractFragmentPagerAdater mPagerAdapter;
+	private ViewPager pager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,8 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		this.drawerLayout.setDrawerListener(mDrawerToggle);
 
 		this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
-		ViewPager pager = (ViewPager) super.findViewById(R.id.viewpager);
-		pager.setAdapter(this.mPagerAdapter);
+		this.pager = (ViewPager) super.findViewById(R.id.viewpager);
+		this.pager.setAdapter(this.mPagerAdapter);
 	}
 
 	@Override
@@ -68,18 +69,32 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		ViewPager pager = (ViewPager) super.findViewById(R.id.viewpager);
+		for (int i = 0; i < this.mPagerAdapter.getCount(); i++) {
+			getSupportFragmentManager().beginTransaction().remove(this.mPagerAdapter.getItem(i)).commit();
+		}
+		this.mPagerAdapter.clear();
+		this.pager.removeAllViews();
+		this.pager.setAdapter(null);
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + mPagerAdapter.toString());
 		switch (position) {
 		case 0:
 			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
-			pager.setAdapter(this.mPagerAdapter);
 			break;
 		case 1:
 			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
-			pager.setAdapter(this.mPagerAdapter);
 			break;
 		default:
+			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
+			break;
 		}
+		System.out.println("cccccccccccccccccccccccccccccccc " + mPagerAdapter.toString());
+		try {
+			this.pager.setAdapter(this.mPagerAdapter);
+		} catch (Exception e) {
+			System.out.println("error :" + e.toString());
+		}
+		System.out.println("dddddddddddddddddddddddddddddd  " + mPagerAdapter.toString());
+		this.drawerLayout.closeDrawers();
 	}
 
 	@Override

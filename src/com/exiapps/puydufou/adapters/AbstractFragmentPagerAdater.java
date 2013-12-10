@@ -24,4 +24,8 @@ public abstract class AbstractFragmentPagerAdater extends FragmentPagerAdapter {
 	public int getCount() {
 		return this.fragments.size();
 	}
+
+	public void clear() {
+		this.fragments.clear();
+	}
 }
