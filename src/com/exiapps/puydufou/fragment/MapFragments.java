@@ -68,8 +68,6 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
-
 	}
 
 	private void markerShow() {
@@ -77,18 +75,21 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 		SpectacleManager spectacleManager = new SpectacleManager();
 		spectacleManager.getAllDetailAsync();
 		spectacleManager.setOnReceiveListener(new OnReceiveListener() {
-
 			@Override
 			public void OnReceive(Object object) {
 				spectacles = (List<Spectacle>) object;
 				if (spectacles.size() > 0) {
 					for (Spectacle spectacle : spectacles) {
-						show.add(map.addMarker(new MarkerOptions().position(spectacle.getPosition()).title(spectacle.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.spectacle))));
+						show.add(map.addMarker(new MarkerOptions()
+								.position(spectacle.getPosition())
+								.title(spectacle.getNom())
+								.snippet(
+										((String) getResources().getText(R.string.next_show)) + " " + ((String) getResources().getText(R.string.duration)) + " " + String.valueOf(spectacle.getDuree())
+												+ " " + ((String) getResources().getText(R.string.time_duration))).icon(BitmapDescriptorFactory.fromResource(R.drawable.spectacle))));
 					}
 				}
 			}
 		});
-
 	}
 
 	private void markerBoutique() {
@@ -96,18 +97,17 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 		ServiceManager serviceManager = new ServiceManager();
 		serviceManager.getAllBoutiqueDetailAsync();
 		serviceManager.setOnReceiveListener(new OnReceiveListener() {
-
 			@Override
 			public void OnReceive(Object object) {
 				boutiques = ((List<Service>) object);
 				if (boutiques.size() > 0) {
 					for (Service service : boutiques) {
-						boutique.add(map.addMarker(new MarkerOptions().position(service.getPosition()).title(service.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.boutique))));
+						boutique.add(map.addMarker(new MarkerOptions().position(service.getPosition()).title(service.getNom()).snippet(((String) getResources().getText(R.string.boutique)))
+								.icon(BitmapDescriptorFactory.fromResource(R.drawable.boutique))));
 					}
 				}
 			}
 		});
-
 	}
 
 	private void markerRestaurant() {
@@ -115,39 +115,33 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 		ServiceManager serviceManager = new ServiceManager();
 		serviceManager.getAllRestaurantDetailAsync();
 		serviceManager.setOnReceiveListener(new OnReceiveListener() {
-
 			@Override
 			public void OnReceive(Object object) {
 				restaurants = ((List<Service>) object);
 				if (restaurants.size() > 0) {
 					for (Service service : restaurants) {
-						restaurant.add(map.addMarker(new MarkerOptions().position(service.getPosition()).title(service.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.restaurant))));
+						restaurant.add(map.addMarker(new MarkerOptions().position(service.getPosition()).title(service.getNom()).snippet(((String) getResources().getText(R.string.restaurant)))
+								.icon(BitmapDescriptorFactory.fromResource(R.drawable.restaurant))));
 					}
 				}
 			}
 		});
-
 	}
 
 	@Override
 	public boolean onMarkerClick(final Marker marker) {
-		final CharSequence[] items = { ((String) getResources().getText(R.string.next_show)) + ((String) getResources().getText(R.string.duration)), getResources().getText(R.string.btn_info),
-				getResources().getText(R.string.btn_nav) };
+		final CharSequence[] items = { marker.getSnippet(), (String) getResources().getText(R.string.btn_info), (String) getResources().getText(R.string.btn_nav) };
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle(marker.getTitle());
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int item) {
-				switch (item) {
-				case 1:
-
-					break;
-				case 2:
+				if (item == items.length - 1) {
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=" + String.valueOf(marker.getPosition().latitude) + ","
 							+ String.valueOf(marker.getPosition().longitude + "&dirflg=w")));
 					startActivity(intent);
-					break;
-				default:
-					break;
+				}
+				if (item == items.length - 2) {
+
 				}
 			}
 		});

@@ -19,7 +19,10 @@
     <string name="title">Puy du fou</string>
     <string name="btn_info">Information</string>
     <string name="btn_nav">Aller</string>
-    <string name="next_show">Prochain Spectacle : </string>
-    <string name="duration">Durée : </string>
+    <string name="next_show">Prochain spectacle à </string>
+    <string name="duration">Durée </string>
+    <string name="restaurant">Restaurant</string>
+    <string name="boutique">Boutique</string>
+    <string name="time_duration"> min.</string>
 
 </resources>
