@@ -9,6 +9,10 @@ import com.exiapps.puydufou.R;
 
 public class ScheduleFragment extends AbstractFragment {
 
+	public ScheduleFragment(){
+		this.title = "Planning";
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

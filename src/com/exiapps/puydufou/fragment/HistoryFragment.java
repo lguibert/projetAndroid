@@ -8,10 +8,20 @@ import android.view.ViewGroup;
 
 import com.exiapps.puydufou.R;
 
-public class HistoryFragment extends Fragment {
+public class HistoryFragment extends AbstractFragment {
 
+	public HistoryFragment(){
+		this.title = "Historique";
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.page_gauche_layout, container, false);
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
 	}
 }

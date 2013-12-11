@@ -11,9 +11,9 @@ public class InformationPagerAdapter extends AbstractFragmentPagerAdater {
 	public InformationPagerAdapter(FragmentManager fragmentManager, Activity activity) {
 		
 		super(fragmentManager);
-		fragments.add(Fragment.instantiate(activity, HistoryFragment.class.getName()));
-		fragments.add(Fragment.instantiate(activity, HistoryFragment.class.getName()));
-		fragments.add(Fragment.instantiate(activity, HistoryFragment.class.getName()));
+		fragments.add(new HistoryFragment());
+		fragments.add(new HistoryFragment());
+		fragments.add(new HistoryFragment());
 	}
 
 }

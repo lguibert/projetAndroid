@@ -9,6 +9,6 @@ import com.exiapps.puydufou.fragment.MapFragments;
 public class MapPagerAdapter extends AbstractFragmentPagerAdater {
 	public MapPagerAdapter(FragmentManager fragmentManager, Activity activity) {
 		super(fragmentManager);
-		fragments.add(Fragment.instantiate(activity, MapFragments.class.getName()));
+		fragments.add(new MapFragments());
 	}
 }

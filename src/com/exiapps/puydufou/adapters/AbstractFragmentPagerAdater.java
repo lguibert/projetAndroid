@@ -3,16 +3,18 @@ package com.exiapps.puydufou.adapters;
 import java.util.List;
 import java.util.Vector;
 
+import com.exiapps.puydufou.fragment.AbstractFragment;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 public abstract class AbstractFragmentPagerAdater extends FragmentPagerAdapter {
-	protected List<Fragment> fragments;
+	protected List<AbstractFragment> fragments;
 
 	public AbstractFragmentPagerAdater(FragmentManager fragmentManager) {
 		super(fragmentManager);
-		this.fragments = new Vector<Fragment>();
+		this.fragments = new Vector<AbstractFragment>();
 	}
 
 	@Override
@@ -29,7 +31,9 @@ public abstract class AbstractFragmentPagerAdater extends FragmentPagerAdapter {
 	
 	@Override
 	public CharSequence getPageTitle(int position) {
-		return "";
+		
+		AbstractFragment fragment = this.fragments.get(position);
+		return fragment.getTitle();
 	}
 
 	public void clear() {
