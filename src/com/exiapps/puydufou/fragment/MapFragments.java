@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.exiapps.puydufou.R;
+import com.exiapps.puydufou.model.SpectacleManager;
+import com.exiapps.puydufou.model.entities.Spectacle;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -64,6 +66,14 @@ public class MapFragments extends Fragment implements OnMarkerClickListener {
 
 	private void markerShow() {
 		this.show = new ArrayList<Marker>();
-		this.show.add(map.addMarker(new MarkerOptions().position(PDF).title("Puy du Fou").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher))));
+		List<Spectacle> spectacles = new ArrayList<Spectacle>();
+		spectacles = new SpectacleManager().getAllDetail();
+		if (spectacles.size() > 0) {
+			for (Spectacle spectacle : spectacles) {
+				System.out.println(spectacle.getNom());
+				this.show.add(map.addMarker(new MarkerOptions().position(spectacle.getPosition()).title(spectacle.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher))));
+				System.out.println(spectacle.getNom());
+			}
+		}
 	}
 }

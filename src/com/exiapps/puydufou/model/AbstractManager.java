@@ -13,21 +13,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 public abstract class AbstractManager {
-	
-	protected static String BASE_URI ="http://192.168.0.5/projetAndroid/";
-	
-	protected JSONArray readJsonArray(String uri){
-		
+
+	protected static String BASE_URI = "http://192.168.0.5/projetAndroid/";
+
+	protected JSONArray readJsonArray(String uri) {
+
 		JSONArray jsonArray = null;
-		
+
 		try {
 
 			InputStream inputStream = new URL(uri).openStream();
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-			jsonArray = new JSONArray(readAll(bufferedReader));			
-			
+			jsonArray = new JSONArray(readAll(bufferedReader));
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -38,19 +36,19 @@ public abstract class AbstractManager {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
+
 		return jsonArray;
-	}	
-	protected JSONObject readJsonObject(String uri){
-		
+	}
+
+	protected JSONObject readJsonObject(String uri) {
+
 		JSONObject json = null;
-		
+
 		try {
 
 			InputStream inputStream = new URL(uri).openStream();
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-			json = new JSONObject(readAll(bufferedReader));			
-			
+			json = new JSONObject(readAll(bufferedReader));
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -61,10 +59,10 @@ public abstract class AbstractManager {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
+
 		return json;
 	}
-	
+
 	private String readAll(Reader rd) throws IOException {
 
 		StringBuilder sb = new StringBuilder();
@@ -74,5 +72,4 @@ public abstract class AbstractManager {
 		}
 		return sb.toString();
 	}
-
 }

@@ -1,5 +1,6 @@
 package com.exiapps.puydufou.view;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
@@ -28,6 +29,7 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 		setContentView(R.layout.activity_main);
 
 		this.listView = (ListView) findViewById(R.id.left_drawer);
@@ -75,7 +77,6 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		this.mPagerAdapter.clear();
 		this.pager.removeAllViews();
 		this.pager.setAdapter(null);
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + mPagerAdapter.toString());
 		switch (position) {
 		case 0:
 			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
@@ -87,13 +88,10 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
 			break;
 		}
-		System.out.println("cccccccccccccccccccccccccccccccc " + mPagerAdapter.toString());
 		try {
 			this.pager.setAdapter(this.mPagerAdapter);
 		} catch (Exception e) {
-			System.out.println("error :" + e.toString());
 		}
-		System.out.println("dddddddddddddddddddddddddddddd  " + mPagerAdapter.toString());
 		this.drawerLayout.closeDrawers();
 	}
 
