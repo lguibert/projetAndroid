@@ -13,10 +13,13 @@
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
-    
     <string name="drawer_open">Menu</string>
     <string name="drawer_close">Puy du fou</string>
     <string name="title_after_open">Menu</string>
     <string name="title">Puy du fou</string>
+
+    <!-- map_spectacle_layout -->
+    <string name="btn_info">Infofmation Spectacle</string>
+    <string name="btn_nav">Aller</string>
 
 </resources>
