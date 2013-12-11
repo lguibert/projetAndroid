@@ -96,25 +96,27 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		this.pager.setAdapter(null);
 		
 		switch (position) {
-		case 0:
-			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
-			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-			break;
-		case 1:
-			this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);
-			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-			this.initTab();
-		break;
-		case 2:
-			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
-			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-			this.initTab();			
-		break;		
-		default:
-		}
-			try {
+			case 0:
+				this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
 				this.pager.setAdapter(this.mPagerAdapter);
-			} catch (Exception e) {
+				this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+				break;
+			case 1:
+				this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);
+				this.pager.setAdapter(this.mPagerAdapter);
+				this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+				this.initTab();
+			break;
+			case 2:
+				this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
+				this.pager.setAdapter(this.mPagerAdapter);
+				this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+				this.initTab();			
+			break;		
+			default:
+			{
+			}
+			
 		}
 			
 		this.drawerLayout.closeDrawers();
