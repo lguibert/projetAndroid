@@ -10,9 +10,9 @@ import org.json.JSONObject;
 import com.exiapps.puydufou.model.entities.Spectacle;
 
 public class SpectacleManager extends AbstractManager {
-	
+
 	private List<Spectacle> spectacles;
-	
+
 	public SpectacleManager() {
 
 	}
@@ -30,7 +30,7 @@ public class SpectacleManager extends AbstractManager {
 
 				jSpectacle = array.getJSONObject(i);
 
-				Spectacle spectacle = new Spectacle(jSpectacle.getInt("idspectacle"), jSpectacle.getString("nomspectacle"));
+				Spectacle spectacle = new Spectacle(jSpectacle.getInt("IDSPECTACLE"), jSpectacle.getString("NOMSPECTACLE"));
 
 				spectacles.add(spectacle);
 
@@ -42,7 +42,6 @@ public class SpectacleManager extends AbstractManager {
 	}
 
 	public void getAllDetailAsync() {
-		
 
 		new Thread() {
 			@Override
@@ -52,8 +51,6 @@ public class SpectacleManager extends AbstractManager {
 				JSONArray array = new JSONArray();
 
 				array = readJsonArray(BASE_URI + "?type=select&var=all");
-
-
 				for (int i = 0; i < array.length(); i++) {
 
 					JSONObject jSpectacle = null;
@@ -62,17 +59,17 @@ public class SpectacleManager extends AbstractManager {
 
 						jSpectacle = array.getJSONObject(i);
 
-						Spectacle spectacle = new Spectacle(jSpectacle.getInt("idspectacle"), jSpectacle.getString("nomspectacle"), jSpectacle.getString("evenementliespectacle"),
-								jSpectacle.getInt("dureespectacle"), jSpectacle.getString("datecreationspectacle"), jSpectacle.getInt("nbacteursspectacle"), jSpectacle.getDouble("latitudespectacle"),
-								jSpectacle.getDouble("longitudespectacle"), jSpectacle.getString("imagespectacle"));
+						Spectacle spectacle = new Spectacle(jSpectacle.getInt("IDSPECTACLE"), jSpectacle.getString("NOMSPECTACLE"), jSpectacle.getString("EVENEMENTLIESPECTACLE"),
+								jSpectacle.getInt("DUREESPECTACLE"), jSpectacle.getString("DATECREATIONSPECTACLE"), jSpectacle.getInt("NBACTEURSSPECTACLE"), jSpectacle.getDouble("LATITUDESPECTACLE"),
+								jSpectacle.getDouble("LONGITUDESPECTACLE"), jSpectacle.getString("IMAGESPECTACLE"));
+						spectacles.add(spectacle);
 
-						spectacles.add(spectacle);				
-						
 					} catch (JSONException e) {
+						System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb " + e.getMessage());
 					}
 				}
 				onReceiveListener.OnReceive(spectacles);
 			}
-		}.start();		
+		}.start();
 	}
 }
