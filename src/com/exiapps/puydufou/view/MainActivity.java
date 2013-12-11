@@ -94,9 +94,11 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		this.mPagerAdapter.clear();
 		this.pager.removeAllViews();
 		this.pager.setAdapter(null);
+		
 		switch (position) {
 		case 0:
 			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
+			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 			break;
 		case 1:
 			this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);
@@ -110,14 +112,17 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		break;		
 		default:
 		}
-		try {
-			this.pager.setAdapter(this.mPagerAdapter);
-		} catch (Exception e) {
+			try {
+				this.pager.setAdapter(this.mPagerAdapter);
+			} catch (Exception e) {
 		}
+			
 		this.drawerLayout.closeDrawers();
 	}
 
 	private void initTab() {
+		
+		getActionBar().removeAllTabs();
 		
 		pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
@@ -130,6 +135,7 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		
 		for (int i = 0; i < mPagerAdapter.getCount(); i++) {
 
+			
 			getActionBar().addTab(getActionBar().newTab()
 					.setText(mPagerAdapter.getPageTitle(i))
 					.setTabListener((TabListener) this));
