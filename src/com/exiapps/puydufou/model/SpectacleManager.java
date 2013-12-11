@@ -43,6 +43,12 @@ public class SpectacleManager extends AbstractManager {
 
 	public void getAllDetailAsync() {
 
+		final Runnable runInUIThread = new Runnable() {
+			public void run() {
+				onReceiveListener.OnReceive(spectacles);
+			}
+		};
+		
 		new Thread() {
 			@Override
 			public void run() {
@@ -68,7 +74,7 @@ public class SpectacleManager extends AbstractManager {
 						System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb " + e.getMessage());
 					}
 				}
-				onReceiveListener.OnReceive(spectacles);
+				uiThreadCallback.post(runInUIThread);
 			}
 		}.start();
 	}

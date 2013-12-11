@@ -13,8 +13,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Handler;
+
 public abstract class AbstractManager {
 
+	protected final  Handler uiThreadCallback = new Handler();
+	
 	protected OnReceiveListener onReceiveListener;
 	
 	protected static String BASE_URI = "http://192.168.0.5/projetAndroid/";
