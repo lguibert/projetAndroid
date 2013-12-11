@@ -25,6 +25,13 @@ public abstract class AbstractFragmentPagerAdater extends FragmentPagerAdapter {
 		return this.fragments.size();
 	}
 
+	
+	
+	@Override
+	public CharSequence getPageTitle(int position) {
+		return "";
+	}
+
 	public void clear() {
 		this.fragments.clear();
 	}

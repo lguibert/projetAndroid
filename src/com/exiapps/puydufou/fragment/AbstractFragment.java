@@ -1,6 +1,6 @@
-package com.exiapps.puydufou.view.fragments;
+package com.exiapps.puydufou.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 public abstract class AbstractFragment extends Fragment {

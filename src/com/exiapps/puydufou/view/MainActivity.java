@@ -1,6 +1,11 @@
 package com.exiapps.puydufou.view;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.ActionBar.TabListener;
+import android.app.FragmentTransaction;
 import android.content.pm.ActivityInfo;
+import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
@@ -18,8 +23,9 @@ import com.exiapps.puydufou.adapters.AbstractFragmentPagerAdater;
 import com.exiapps.puydufou.adapters.DrawerArrayAdapter;
 import com.exiapps.puydufou.adapters.InformationPagerAdapter;
 import com.exiapps.puydufou.adapters.MapPagerAdapter;
+import com.exiapps.puydufou.adapters.ScheduleFragmentPagerAdapter;
 
-public class MainActivity extends FragmentActivity implements ListView.OnItemClickListener {
+public class MainActivity extends FragmentActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
 	private ListView listView;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private DrawerLayout drawerLayout;
@@ -32,6 +38,14 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 		setContentView(R.layout.activity_main);
 
+		// Set up the action bar.
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
+	   
+	    
+	    
+	    	
+		
 		this.listView = (ListView) findViewById(R.id.left_drawer);
 		this.listView.setAdapter(new DrawerArrayAdapter(this, R.layout.drawer_list_item));
 		this.listView.setOnItemClickListener((OnItemClickListener) this);
@@ -60,6 +74,9 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
 		this.pager = (ViewPager) super.findViewById(R.id.viewpager);
 		this.pager.setAdapter(this.mPagerAdapter);
+		
+		
+	
 	}
 
 	@Override
@@ -82,17 +99,41 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
 			break;
 		case 1:
+			this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);
+			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			this.initTab();
+		break;
+		case 2:
 			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
-			break;
+			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			this.initTab();			
+		break;		
 		default:
-			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
-			break;
 		}
 		try {
 			this.pager.setAdapter(this.mPagerAdapter);
 		} catch (Exception e) {
 		}
 		this.drawerLayout.closeDrawers();
+	}
+
+	private void initTab() {
+		
+		pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+			@Override
+			public void onPageSelected(int position) {
+				
+				
+				getActionBar().setSelectedNavigationItem(position);
+			}
+		});
+		
+		for (int i = 0; i < mPagerAdapter.getCount(); i++) {
+
+			getActionBar().addTab(getActionBar().newTab()
+					.setText(mPagerAdapter.getPageTitle(i))
+					.setTabListener((TabListener) this));
+		}		
 	}
 
 	@Override
@@ -107,4 +148,24 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 			return super.onOptionsItemSelected(item);
 		}
 	}
+
+	@Override
+	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		pager.setCurrentItem(tab.getPosition());
+		
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
 }
