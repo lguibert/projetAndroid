@@ -15,6 +15,8 @@ import org.json.JSONObject;
 
 public abstract class AbstractManager {
 
+	protected OnReceiveListener onReceiveListener;
+	
 	protected static String BASE_URI = "http://192.168.0.5/projetAndroid/";
 
 	protected JSONArray readJsonArray(String uri) {
@@ -71,5 +73,9 @@ public abstract class AbstractManager {
 			sb.append((char) cp);
 		}
 		return sb.toString();
+	}
+	
+	public void setOnReceiveListener(OnReceiveListener listener){
+		this.onReceiveListener = listener;
 	}
 }

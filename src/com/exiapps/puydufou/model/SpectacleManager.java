@@ -10,7 +10,9 @@ import org.json.JSONObject;
 import com.exiapps.puydufou.model.entities.Spectacle;
 
 public class SpectacleManager extends AbstractManager {
-
+	
+	private List<Spectacle> spectacles;
+	
 	public SpectacleManager() {
 
 	}
@@ -39,36 +41,38 @@ public class SpectacleManager extends AbstractManager {
 		return spectacles;
 	}
 
-	public List<Spectacle> getAllDetail() {
-		List<Spectacle> spectacles = new ArrayList<Spectacle>();
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ");
-		JSONArray array = new JSONArray();
-		System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb ");
-		try {
-			array = this.readJsonArray(BASE_URI + "?type=select&var=all");
-		} catch (Error e) {
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + e.toString());
-		}
-		System.out.println("cccccccccccccccccccccccccccccccccccccccccc ");
-		for (int i = 0; i < array.length(); i++) {
+	public void getAllDetailAsync() {
+		
 
-			JSONObject jSpectacle = null;
+		new Thread() {
+			@Override
+			public void run() {
+				spectacles = new ArrayList<Spectacle>();
 
-			try {
+				JSONArray array = new JSONArray();
 
-				jSpectacle = array.getJSONObject(i);
+				array = readJsonArray(BASE_URI + "?type=select&var=all");
 
-				Spectacle spectacle = new Spectacle(jSpectacle.getInt("idspectacle"), jSpectacle.getString("nomspectacle"), jSpectacle.getString("evenementliespectacle"),
-						jSpectacle.getInt("dureespectacle"), jSpectacle.getString("datecreationspectacle"), jSpectacle.getInt("nbacteursspectacle"), jSpectacle.getDouble("latitudespectacle"),
-						jSpectacle.getDouble("longitudespectacle"), jSpectacle.getString("imagespectacle"));
 
-				spectacles.add(spectacle);
+				for (int i = 0; i < array.length(); i++) {
 
-			} catch (JSONException e) {
+					JSONObject jSpectacle = null;
+
+					try {
+
+						jSpectacle = array.getJSONObject(i);
+
+						Spectacle spectacle = new Spectacle(jSpectacle.getInt("idspectacle"), jSpectacle.getString("nomspectacle"), jSpectacle.getString("evenementliespectacle"),
+								jSpectacle.getInt("dureespectacle"), jSpectacle.getString("datecreationspectacle"), jSpectacle.getInt("nbacteursspectacle"), jSpectacle.getDouble("latitudespectacle"),
+								jSpectacle.getDouble("longitudespectacle"), jSpectacle.getString("imagespectacle"));
+
+						spectacles.add(spectacle);				
+						
+					} catch (JSONException e) {
+					}
+				}
+				onReceiveListener.OnReceive(spectacles);
 			}
-		}
-
-		return spectacles;
+		}.start();		
 	}
-
 }

@@ -67,7 +67,9 @@ public class MapFragments extends Fragment implements OnMarkerClickListener {
 	private void markerShow() {
 		this.show = new ArrayList<Marker>();
 		List<Spectacle> spectacles = new ArrayList<Spectacle>();
-		spectacles = new SpectacleManager().getAllDetail();
+		
+		//spectacles = new SpectacleManager().getAllDetail();
+		
 		if (spectacles.size() > 0) {
 			for (Spectacle spectacle : spectacles) {
 				System.out.println(spectacle.getNom());
