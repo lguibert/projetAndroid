@@ -48,7 +48,7 @@ public class SpectacleManager extends AbstractManager {
 				onReceiveListener.OnReceive(spectacles);
 			}
 		};
-		
+
 		new Thread() {
 			@Override
 			public void run() {
@@ -71,7 +71,6 @@ public class SpectacleManager extends AbstractManager {
 						spectacles.add(spectacle);
 
 					} catch (JSONException e) {
-						System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb " + e.getMessage());
 					}
 				}
 				uiThreadCallback.post(runInUIThread);
