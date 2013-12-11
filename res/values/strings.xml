@@ -17,9 +17,9 @@
     <string name="drawer_close">Puy du fou</string>
     <string name="title_after_open">Menu</string>
     <string name="title">Puy du fou</string>
-
-    <!-- map_spectacle_layout -->
-    <string name="btn_info">Infofmation Spectacle</string>
+    <string name="btn_info">Information</string>
     <string name="btn_nav">Aller</string>
+    <string name="next_show">Prochain Spectacle : </string>
+    <string name="duration">Durée : </string>
 
 </resources>

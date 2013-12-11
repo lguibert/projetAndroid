@@ -5,11 +5,12 @@ import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.exiapps.puydufou.R;
 import com.exiapps.puydufou.model.OnReceiveListener;
@@ -19,15 +20,14 @@ import com.exiapps.puydufou.model.entities.Service;
 import com.exiapps.puydufou.model.entities.Spectacle;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
-import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapFragments extends AbstractFragment implements InfoWindowAdapter, OnInfoWindowClickListener {
+public class MapFragments extends AbstractFragment implements OnMarkerClickListener {
 	static final LatLng PDF = new LatLng(46.889271, -0.930117);
 	private GoogleMap map;
 	private List<Marker> show;
@@ -55,16 +55,8 @@ public class MapFragments extends AbstractFragment implements InfoWindowAdapter,
 		markerRestaurant();
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(PDF, 15));
 		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-		map.setInfoWindowAdapter(this);
+		map.setOnMarkerClickListener(this);
 	}
-
-	/*
-	 * Intent intent = new Intent(Intent.ACTION_VIEW,
-	 * Uri.parse("http://maps.google.com/maps?daddr=" +
-	 * String.valueOf(marker.getPosition().latitude) + "," +
-	 * String.valueOf(marker.getPosition().longitude + "&dirflg=w")));
-	 * startActivity(intent);
-	 */
 
 	@Override
 	public void onDestroyView() {
@@ -78,43 +70,6 @@ public class MapFragments extends AbstractFragment implements InfoWindowAdapter,
 	public void refresh() {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public View getInfoContents(Marker marker) {
-		return null;
-	}
-
-	@Override
-	public View getInfoWindow(Marker marker) {
-		// Getting view from the layout file info_window_layout
-		View view = getActivity().getLayoutInflater().inflate(R.layout.map_spectacle_layout, null);
-
-		TextView name = (TextView) view.findViewById(R.id.nomSpesctacle);
-
-		name.setText(marker.getTitle());
-
-		// Returning the view containing InfoWindow contents
-		return view;
-	}
-
-	@Override
-	public void onInfoWindowClick(Marker marker) {
-		// TODO Auto-generated method stub
-		final CharSequence[] items = { "message", "call" };
-
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setTitle("Call");
-		builder.setItems(items, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int item) {
-				if (item == 0) {
-					System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-				} else {
-					System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-				}
-
-			}
-		});
 	}
 
 	private void markerShow() {
@@ -172,5 +127,32 @@ public class MapFragments extends AbstractFragment implements InfoWindowAdapter,
 			}
 		});
 
+	}
+
+	@Override
+	public boolean onMarkerClick(final Marker marker) {
+		final CharSequence[] items = { ((String) getResources().getText(R.string.next_show)) + ((String) getResources().getText(R.string.duration)), getResources().getText(R.string.btn_info),
+				getResources().getText(R.string.btn_nav) };
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setTitle(marker.getTitle());
+		builder.setItems(items, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int item) {
+				switch (item) {
+				case 1:
+
+					break;
+				case 2:
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=" + String.valueOf(marker.getPosition().latitude) + ","
+							+ String.valueOf(marker.getPosition().longitude + "&dirflg=w")));
+					startActivity(intent);
+					break;
+				default:
+					break;
+				}
+			}
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
+		return true;
 	}
 }
