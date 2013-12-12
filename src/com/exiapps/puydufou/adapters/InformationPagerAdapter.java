@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.exiapps.puydufou.fragment.BoutiqueFragment;
 import com.exiapps.puydufou.fragment.HistoryFragment;
+import com.exiapps.puydufou.fragment.InformationFragment;
 import com.exiapps.puydufou.fragment.RestaurantFragment;
 
 public class InformationPagerAdapter extends AbstractFragmentPagerAdater {
@@ -13,7 +14,7 @@ public class InformationPagerAdapter extends AbstractFragmentPagerAdater {
 
 		super(fragmentManager);
 		fragments.add(new HistoryFragment());
-		fragments.add(new HistoryFragment());
+		fragments.add(new InformationFragment());
 		fragments.add(new BoutiqueFragment());
 		fragments.add(new RestaurantFragment());
 	}

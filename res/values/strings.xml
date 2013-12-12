@@ -27,4 +27,65 @@
     <string name="time_duration"> min.</string>
     <string name="legende">Légende</string>
 
+    <!-- Historique -->
+    <string name="historique1">Au Commencement</string>
+    <string name="historique2">Depuis plus de 30 ans ! L\'aventure du Puy du Fou. Lorsque le château du Puy du Fou a été découvert le 13 juin 1977, il n\'était plus que ruines et orties. 30 ans plus tard le Puy du Fou, créé par Philippe De Villiers, est salué comme une réussite mondiale avec plus de 1,5 million de visiteurs chaque année. Voici les jalons de 30 ans d\'histoire&#133;</string>
+    <string name="historique3">1978</string>
+    <string name="historique4">La 1ère représentation de la Cinéscénie est jouée le 16 juin par plus de 600 Puyfolais membres de l\'association du Puy du Fou. Le public, sous le charme, acclame les acteurs et plus de 80 000 visiteurs sont séduits dès la première année.</string>
+    <string name="historique5">1981</string>
+    <string name="historique6">Georges Delerue compose la première musique originale de la Cinéscénie.</string>
+    <string name="historique7">1984</string>
+    <string name="historique8">Le Puy du Fou organise sa 1ère soirée humanitaire présidée par Yves Montand au profit de la recherche contre le cancer. Depuis, le Puy du Fou a déjà versé 2 000 000 euros pour soutenir de nombreuses actions humanitaires en France et dans le monde entier.</string>
+    <string name="historique9">1989</string>
+    <string name="historique10">Pour faire face au succès de la Cinéscénie qui accueille de plus en plus de visiteurs, les Puyfolais décident de créer une activité de jour innovante : le Grand Parc du Puy du Fou conciliant le culturel et le ludique, le divertissement et le pédagogique, le spectaculaire et l\'émotion.</string>
+    <string name="historique11">1990</string>
+    <string name="historique12">La tribune en bois démontable de la Cinéscénie ne suffit plus : la décision est prise de construire une tribune panoramique de 12 000 places.</string>
+    <string name="historique13">1990&#8211;1994</string>
+    <string name="historique14">Chaque année le Grand Parc crée un nouveau spectacle: Le Spectacle de Fauconnerie (1991), le Théâtre d\'eau (1992), le Chemin de la Mémoire ( 1991), la Fête de Chevalerie (1994)&#133;</string>
+    <string name="historique15">1993</string>
+    <string name="historique16">Alexandre Soljenitsyne préside une soirée exceptionnelle au Puy du Fou pour rendre hommage aux Vendéens. La même année, le Puy du Fou accueille le départ du Tour de France cycliste, qui reviendra en 1997 et 1999.</string>
+    <string name="historique17">1995</string>
+    <string name="historique18">En quelques mois, la Cité Médiévale du Grand Parc est construite et ouvre ses échoppes. Un nouveau spectacle est créé au pied de l\'enceinte fortifiée : le Magicien Ménestrel.</string>
+    <string name="historique19">1997</string>
+    <string name="historique20">Au sein du Grand Parc, le Fort de l\'An Mil prend vie et propose aux visiteurs un voyage au temps des Vikings. Cette même année fête aussi le 20ème anniversaire de la Cinéscénie: la scène est agrandie de 5 hectares et la tribune accueille 2000 spectateurs supplémentaires.</string>
+    <string name="historique21">1998</string>
+    <string name="historique22">Création de l\'Académie Junior destinée à la formation des futurs artistes et techniciens du Puy du Fou. Elle est composée de 23 écoles dans tous les arts et techniques du spectacle et accueille 300 élèves par an.</string>
+    <string name="historique23">2000</string>
+    <string name="historique24">La Grand Parc créé la Bataille du Donjon, un spectacle aux cascades époustouflantes, parrainé par Alain Delon.</string>
+    <string name="historique25">2001</string>
+    <string name="historique26">Le Grand Parc inaugure le Stadium Gallo-Romain sous la présidence de Patrick Poivre d\'Arvor et Jean Claude Killy. Le spectacle "Gladiateurs" est unique au monde ! En même temps, la Cinéscénie fête son 7 millionième spectateur.</string>
+    <string name="historique27">2003</string>
+    <string name="historique28">Le Bal des Oiseaux Fantômes, nouveau spectacle du Grand Parc, offre l\'évasion à travers un majestueux ballet de rapaces. Cette même année, la nouvelle Cinéscénie est jouée en présence d\'Alain Delon, Michel Drucker, Patrick Poivre d\'Arvor, Jean Claude Killy et Nick Glennie Smith le compositeur de la nouvelle bande originale.</string>
+    <string name="historique29">2004</string>
+    <string name="historique30">A l\'entrée du Grand Parc, le Bourg 1900 transporte les visiteurs au cœur de la Belle Epoque à travers ses vieux commerces et ses automates musiciens.</string>
+    <string name="historique31">2005</string>
+    <string name="historique32">Le Grand Parc revisite son spectacle "Les Vikings" grâce à des effets spéciaux des plus étonnants ! La scène de la Cinéscénie est agrandie avec la construction d\'un nouveau décor géant représentant un village sur 10 000m2.</string>
+    <string name="historique33">2006</string>
+    <string name="historique34">Le plus grand projet jamais porté par le Grand Parc est lancé ! Le Grand Carrousel, salle géante de 6000m2, accueille le nouveau spectacle de cape et d\'épée "Mousquetaire de Richelieu".</string>
+    <string name="historique35">2007</string>
+    <string name="historique36">Les visiteurs peuvent désormais prolonger leur voyage dans le temps en dormant au Puy du Fou à La Villa Gallo Romaine pour un séjour en pleine Rome Antique !</string>
+    <string name="historique37">2008</string>
+    <string name="historique38">Le Puy du Fou fête ses 30 ans et créé 3 nouveautés pour l\'occasion: \"L\'Odyssée du Puy du Fou\", \"La Légende de Martin\", et un nouveau final éblouissant à la Cinéscénie.</string>
+    <string name="historique39">2009</string>
+    <string name="historique40">Les visiteurs du Grand Parc découvrent Les Orgues de Feu, un spectacle nocturne féérique, et peuvent désormais redécouvrir le prestige du XVIIIème siècle en dormant dans le 2ème hôtel du Puy du Fou : le Logis de Lescure.</string>
+    <string name="historique41">2010</string>
+    <string name="historique42">Une nouvelle aventure médiévale à grand spectacle voit le jour au Grand Parc : le Secret de la Lance, et le 3ème hôtel est créé : Les Iles de Clovis, sur plus de 7 hectares, cette véritable cité lacustre transporte les visiteurs au temps des vikings !</string>
+    <string name="historique43">2011</string>
+    <string name="historique44">Le Stadium Galllo Romain fait peau neuve et présente son nouveau spectacle : Le Signe du Triomphe !</string>
+    <string name="historique45">2012</string>
+    <string name="historique46">Le Puy du Fou plonge ses visiteurs l’univers de Jean de la Fontaine. Dans un jardin fantastique, les visiteurs vont vivre une aventure ludique et interactive pleine de surprises.</string>
+    <string name="historique47">2013</string>
+    <string name="historique48">Le Puy du Fou propose à ses visiteurs un tout nouveau spectacle, Les Chevaliers de la Table Ronde, où les effets spéciaux grandioses se mêlent aux grandes illusions.</string>
+    <string name="historique49">2014</string>
+    <string name="historique50">Le Puy du Fou s’agrandit avec le nouvel univers de la Renaissance et ses 4 nouveautés dont l’hôtel Le Camp du Drap d’Or, ainsi qu’un spectacle inédit « La Renaissance du Château ».</string>
+
+    <!-- Information pratique -->
+    <string name="information1">Voici quelques conseils et indications utiles pour profiter au mieux de votre visite :</string>
+    <string name="information2">Parkings gratuits,</string>
+    <string name="information3">Les chiens et les chats ne sont pas acceptés au Puy du Fou, pour ne pas gêner les autres animaux,</string>
+    <string name="information4">Le pique-nique est autorisé au Puy du Fou sur les aires spécialement aménagées,</string>
+    <string name="information5">Vous pouvez économiser jusqu’à 3€ sur vos menus en réservant votre table dans certains restaurants du Puy du Fou.</string>
+    <string name="information6"><a href="http://reservation.puydufou.fr/fr/Vente/Accueil">Réservation en ligne en cliquant ici ou au 0 820 09 10 10 (0,118€/mn depuis un poste fixe).</a></string>
+    <string name="link">"http://reservation.puydufou.fr/fr/Vente/Accueil"</string>
+
 </resources>
