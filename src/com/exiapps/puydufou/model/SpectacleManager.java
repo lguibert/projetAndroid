@@ -149,7 +149,7 @@ public class SpectacleManager extends AbstractManager {
 					
 					JSONObject jSpectacle = array.getJSONObject(0);
 					
-					spectacle = new Spectacle(jSpectacle.getInt("IDSPECTACLE"), jSpectacle.getString("NOMSPECTACLE"), jSpectacle.getString("EVENEMENTLIESPECTACLE"),
+					spectacle = new Spectacle(jSpectacle.getInt("IDSPECTACLE"), jSpectacle.getString("NOMSPECTACLE"), jSpectacle.getString("INFOSHISTOSPECTACLE"),
 							jSpectacle.getInt("DUREESPECTACLE"), jSpectacle.getString("DATECREATIONSPECTACLE"), jSpectacle.getInt("NBACTEURSSPECTACLE"), jSpectacle.getDouble("LATITUDESPECTACLE"),
 							jSpectacle.getDouble("LONGITUDESPECTACLE"), jSpectacle.getString("IMAGESPECTACLE"));
 					

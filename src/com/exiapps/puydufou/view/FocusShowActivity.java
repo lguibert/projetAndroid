@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class FocusShowActivity extends Activity {
 	private int id;
@@ -20,9 +21,7 @@ public class FocusShowActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_focus_show);
 		Intent i = getIntent();
-		this.id = i.getIntExtra("id", 0);
-		
-		
+		this.id = i.getIntExtra("id", 0);		
 		
 		SpectacleManager sm = new SpectacleManager();
 		setTitle("");
@@ -32,12 +31,18 @@ public class FocusShowActivity extends Activity {
 			
 			@Override
 			public void OnReceive(Object object) {
-				Spectacle spectacle = (Spectacle) object;
-				
-				System.out.println("ID DANS FOCUS: "+(spectacle.getId()));
+				Spectacle spectacle = (Spectacle) object;		
 				
 				setTitle(spectacle.getNom());
+				TextView info = (TextView) findViewById(R.id.usefullInfos);				
+				TextView duree = (TextView) findViewById(R.id.dureeSpec);
+				TextView nbAct = (TextView) findViewById(R.id.nbAct);
+				TextView date = (TextView) findViewById(R.id.dateCrea);
 				
+				info.setText(spectacle.getInfo());
+				duree.setText(""+spectacle.getDuree()+" minutes");
+				nbAct.setText(""+spectacle.getNbActeur());
+				date.setText(spectacle.getDate());
 			}
 		});
 	}

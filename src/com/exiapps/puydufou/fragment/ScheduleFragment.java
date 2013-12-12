@@ -49,8 +49,7 @@ public class ScheduleFragment extends AbstractFragment implements OnReceiveListe
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Intent i = new Intent(getActivity().getApplicationContext(), FocusShowActivity.class);	
-				i.putExtra("id", ((Spectacle) listView.getAdapter().getItem(position)).getId());
-				System.out.println("ID: "+((Spectacle) listView.getAdapter().getItem(position)).getId());
+				i.putExtra("id", ((Spectacle) listView.getAdapter().getItem(position)).getId());				
 				startActivity(i);
 			}			
 		});

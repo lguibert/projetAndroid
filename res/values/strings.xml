@@ -28,6 +28,14 @@
     <string name="legende">Légende</string>
     <string name="title_activity_focus_show">FocusShowActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="infoSpec">Informations:</string>
+    <string name="infoPracSpec">Informations pratiques:</string>
+    <string name="dureeSpec">Durée:</string>
+    <string name="dateCreaSpec">Date de création:</string>
+    <string name="nbActSpec">Nombre d\'acteurs:</string>
+    <string name="eventLieSpec">Evenenement lié:</string>
+    <string name="buttonShare">Partager</string>
+    <string name="validateNote">Voter !</string>
 
     <!-- Historique -->
     <string name="historique1">Au Commencement</string>
