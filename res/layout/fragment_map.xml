@@ -1,6 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <SlidingDrawer
+        android:id="@+id/slidingDrawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:content="@+id/content"
+        android:gravity="center_horizontal"
+        android:handle="@+id/handle"
+        android:orientation="vertical"
+        android:rotation="180" >
+
+        <LinearLayout
+            android:id="@+id/handle"
+            android:layout_width="match_parent"
+            android:layout_height="50dip" >
+
+            <TextView
+                android:id="@+id/legende"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:gravity="center"
+                android:rotation="180"
+                android:text="@string/legende"
+                android:textColor="@color/white"
+                android:textSize="@dimen/slider" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blackTransparency"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:rotation="180" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/slider" >
+
+                <CheckBox
+                    android:id="@+id/checkBoxSpectacle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/whiteTransparency"
+                    android:checked="true"
+                    android:onClick="onCheckboxClicked" />
+
+                <ImageView
+                    android:id="@+id/imageSpectacle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/spectacle"
+                    android:paddingLeft="@dimen/slider"
+                    android:paddingRight="@dimen/slider"
+                    android:src="@drawable/spectacle" />
+
+                <TextView
+                    android:id="@+id/Spectacle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spectacle"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/slider" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/slider" >
+
+                <CheckBox
+                    android:id="@+id/checkBoxBoutique"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/whiteTransparency"
+                    android:checked="true"
+                    android:onClick="onCheckboxClicked" />
+
+                <ImageView
+                    android:id="@+id/imageBoutique"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/boutique"
+                    android:paddingLeft="@dimen/slider"
+                    android:paddingRight="@dimen/slider"
+                    android:src="@drawable/boutique" />
+
+                <TextView
+                    android:id="@+id/Boutique"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/boutique"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/slider" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/slider" >
+
+                <CheckBox
+                    android:id="@+id/checkBoxRestaurant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/whiteTransparency"
+                    android:checked="true"
+                    android:onClick="onCheckboxClicked" />
+
+                <ImageView
+                    android:id="@+id/imageRestaurant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/restaurant"
+                    android:paddingLeft="@dimen/slider"
+                    android:paddingRight="@dimen/slider"
+                    android:src="@drawable/restaurant" />
+
+                <TextView
+                    android:id="@+id/Restaurant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/restaurant"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/slider" />
+            </LinearLayout>
+        </LinearLayout>
+    </SlidingDrawer>
+
+</RelativeLayout>

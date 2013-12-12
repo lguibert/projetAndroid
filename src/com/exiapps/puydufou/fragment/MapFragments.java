@@ -37,6 +37,7 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 	protected List<Spectacle> spectacles;
 	protected List<Service> boutiques;
 	protected List<Service> restaurants;
+	private String date;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,6 +71,26 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 	public void refresh() {
 	}
 
+	public void onCheckboxClicked(int id, boolean checked) {
+		switch (id) {
+		case R.id.checkBoxSpectacle:
+			setMarkerVisible(this.show, checked);
+			break;
+		case R.id.checkBoxBoutique:
+			setMarkerVisible(this.boutique, checked);
+			break;
+		case R.id.checkBoxRestaurant:
+			setMarkerVisible(this.restaurant, checked);
+			break;
+		}
+	}
+
+	private void setMarkerVisible(List<Marker> markers, boolean check) {
+		for (Marker marker : markers) {
+			marker.setVisible(check);
+		}
+	}
+
 	private void markerShow() {
 		this.show = new ArrayList<Marker>();
 		SpectacleManager spectacleManager = new SpectacleManager();
@@ -80,13 +101,26 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 				spectacles = (List<Spectacle>) object;
 				if (spectacles.size() > 0) {
 					for (Spectacle spectacle : spectacles) {
-						show.add(map.addMarker(new MarkerOptions()
-								.position(spectacle.getPosition())
-								.title(spectacle.getNom())
-								.snippet(
-										((String) getResources().getText(R.string.next_show)) + " " + ((String) getResources().getText(R.string.duration)) + " " + String.valueOf(spectacle.getDuree())
-												+ " " + ((String) getResources().getText(R.string.time_duration))).icon(BitmapDescriptorFactory.fromResource(R.drawable.spectacle))));
+						// nextShow(spectacle.getId());
+						String snippet = ((String) getResources().getText(R.string.next_show)) + " " + "  " + " " + ((String) getResources().getText(R.string.duration)) + " "
+								+ String.valueOf(spectacle.getDuree()) + " " + ((String) getResources().getText(R.string.time_duration));
+						show.add(map.addMarker(new MarkerOptions().position(spectacle.getPosition()).title(spectacle.getNom()).snippet(snippet)
+								.icon(BitmapDescriptorFactory.fromResource(R.drawable.spectacle))));
 					}
+				}
+			}
+		});
+	}
+
+	private void nextShow(int idShow) {
+		SpectacleManager spectacleManager = new SpectacleManager();
+		spectacleManager.getNextShow(idShow);
+		spectacleManager.setOnReceiveListener(new OnReceiveListener() {
+			@Override
+			public void OnReceive(Object object) {
+				List<String> dates = (List<String>) object;
+				if (dates.size() > 0) {
+					date = dates.get(0);
 				}
 			}
 		});

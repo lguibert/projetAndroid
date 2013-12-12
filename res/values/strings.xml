@@ -23,6 +23,8 @@
     <string name="duration">Durée </string>
     <string name="restaurant">Restaurant</string>
     <string name="boutique">Boutique</string>
+    <string name="spectacle">Spectacle</string>
     <string name="time_duration"> min.</string>
+    <string name="legende">Légende</string>
 
 </resources>

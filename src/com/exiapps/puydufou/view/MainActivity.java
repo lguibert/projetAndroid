@@ -5,7 +5,6 @@ import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
 import android.content.pm.ActivityInfo;
-import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
@@ -16,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.exiapps.puydufou.R;
@@ -24,6 +24,7 @@ import com.exiapps.puydufou.adapters.DrawerArrayAdapter;
 import com.exiapps.puydufou.adapters.InformationPagerAdapter;
 import com.exiapps.puydufou.adapters.MapPagerAdapter;
 import com.exiapps.puydufou.adapters.ScheduleFragmentPagerAdapter;
+import com.exiapps.puydufou.fragment.MapFragments;
 
 public class MainActivity extends FragmentActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
 	private ListView listView;
@@ -41,11 +42,7 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		// Set up the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-	   
-	    
-	    
-	    	
-		
+
 		this.listView = (ListView) findViewById(R.id.left_drawer);
 		this.listView.setAdapter(new DrawerArrayAdapter(this, R.layout.drawer_list_item));
 		this.listView.setOnItemClickListener((OnItemClickListener) this);
@@ -74,9 +71,7 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
 		this.pager = (ViewPager) super.findViewById(R.id.viewpager);
 		this.pager.setAdapter(this.mPagerAdapter);
-		
-		
-	
+
 	}
 
 	@Override
@@ -94,54 +89,49 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		this.mPagerAdapter.clear();
 		this.pager.removeAllViews();
 		this.pager.setAdapter(null);
-		
+
 		switch (position) {
-			case 0:
-				this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
-				this.pager.setAdapter(this.mPagerAdapter);
-				this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-				break;
-			case 1:
-				this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);
-				this.pager.setAdapter(this.mPagerAdapter);
-				this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-				this.initTab();
+		case 0:
+			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
+			this.pager.setAdapter(this.mPagerAdapter);
+			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 			break;
-			case 2:
-				this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
-				this.pager.setAdapter(this.mPagerAdapter);
-				this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-				this.initTab();			
-			break;		
-			default:
-			{
-			}
-			
+		case 1:
+			this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);
+			this.pager.setAdapter(this.mPagerAdapter);
+			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			this.initTab();
+			break;
+		case 2:
+			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
+			this.pager.setAdapter(this.mPagerAdapter);
+			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			this.initTab();
+			break;
+		default: {
 		}
-			
+
+		}
+
 		this.drawerLayout.closeDrawers();
 	}
 
 	private void initTab() {
-		
+
 		getActionBar().removeAllTabs();
-		
+
 		pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
 			public void onPageSelected(int position) {
-				
-				
+
 				getActionBar().setSelectedNavigationItem(position);
 			}
 		});
-		
+
 		for (int i = 0; i < mPagerAdapter.getCount(); i++) {
 
-			
-			getActionBar().addTab(getActionBar().newTab()
-					.setText(mPagerAdapter.getPageTitle(i))
-					.setTabListener((TabListener) this));
-		}		
+			getActionBar().addTab(getActionBar().newTab().setText(mPagerAdapter.getPageTitle(i)).setTabListener((TabListener) this));
+		}
 	}
 
 	@Override
@@ -160,20 +150,38 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 	@Override
 	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		pager.setCurrentItem(tab.getPosition());
-		
+
 	}
 
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
+	public void onCheckboxClicked(View view) {
+		// Is the view now checked?
+		boolean checked = ((CheckBox) view).isChecked();
+
+		// Check which checkbox was clicked
+		switch (view.getId()) {
+		case R.id.checkBoxSpectacle:
+			((MapFragments) this.mPagerAdapter.getItem(0)).onCheckboxClicked(R.id.checkBoxSpectacle, checked);
+			break;
+		case R.id.checkBoxBoutique:
+			((MapFragments) this.mPagerAdapter.getItem(0)).onCheckboxClicked(R.id.checkBoxBoutique, checked);
+			break;
+		case R.id.checkBoxRestaurant:
+			((MapFragments) this.mPagerAdapter.getItem(0)).onCheckboxClicked(R.id.checkBoxRestaurant, checked);
+			break;
+		// TODO: Veggie sandwich
+		}
+	}
 
 }

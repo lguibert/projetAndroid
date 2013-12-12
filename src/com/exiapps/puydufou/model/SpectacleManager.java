@@ -11,6 +11,7 @@ import com.exiapps.puydufou.model.entities.Spectacle;
 
 public class SpectacleManager extends AbstractManager {
 
+	private String timetable;
 	private List<Spectacle> spectacles;
 
 	public SpectacleManager() {
@@ -82,7 +83,7 @@ public class SpectacleManager extends AbstractManager {
 
 		final Runnable runInUIThread = new Runnable() {
 			public void run() {
-				onReceiveListener.OnReceive(spectacles);
+				onReceiveListener.OnReceive(timetable);
 			}
 		};
 
@@ -93,7 +94,7 @@ public class SpectacleManager extends AbstractManager {
 
 				JSONArray array = new JSONArray();
 
-				array = readJsonArray(BASE_URI + "?type=select&var=getNextH&id=1" + String.valueOf(idShow));
+				array = readJsonArray(BASE_URI + "?type=select&var=getNextH&id=" + String.valueOf(idShow));
 				for (int i = 0; i < array.length(); i++) {
 
 					JSONObject jTime = null;
