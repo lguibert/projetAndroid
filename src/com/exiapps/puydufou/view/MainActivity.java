@@ -53,7 +53,7 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		this.mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_launcher, R.string.drawer_open, R.string.drawer_close) {
+		this.mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_launcher.png, R.string.drawer_open, R.string.drawer_close) {
 			@Override
 			public void onDrawerClosed(View view) {
 				getActionBar().setTitle(R.string.title);
