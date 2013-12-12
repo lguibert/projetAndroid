@@ -7,14 +7,26 @@ import com.exiapps.puydufou.model.OnReceiveListener;
 import com.exiapps.puydufou.model.SpectacleManager;
 import com.exiapps.puydufou.model.entities.Spectacle;
 
+import android.R.integer;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class FocusShowActivity extends Activity {
+public class FocusShowActivity extends Activity implements OnClickListener {
+	
 	private int id;
+	
+	private Button buttonVote;
+	private RatingBar ratingBar;
+	
+	private SpectacleManager sm;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +35,14 @@ public class FocusShowActivity extends Activity {
 		Intent i = getIntent();
 		this.id = i.getIntExtra("id", 0);		
 		
-		SpectacleManager sm = new SpectacleManager();
+		this.sm = new SpectacleManager();
+		
+		this.buttonVote = (Button) findViewById(R.id.buttonNote);
+		this.ratingBar = (RatingBar) findViewById(R.id.ratingBar1);
+		
+		this.buttonVote.setOnClickListener(this);
+		
+
 		setTitle("");
 		
 		sm.getById(this.id);
@@ -52,6 +71,33 @@ public class FocusShowActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.focus_show, menu);
 		return true;
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		int rating  = (int) ratingBar.getRating();
+		
+		if(rating == 0){rating++;}
+		
+		sm.rateAsync(id, rating);
+		sm.setOnReceiveListener(new OnReceiveListener() {
+			
+			
+			
+			@Override
+			public void OnReceive(Object object) {
+				int note = ((Integer) object).intValue();
+
+				
+				if(note >= 0){
+					Toast.makeText(FocusShowActivity.this, "Votre vote à bien été pris en compte", Toast.LENGTH_SHORT).show();
+					//ratingBar.setRating((float) note);
+				}else{
+					Toast.makeText(FocusShowActivity.this, "Une erreur est survenue", Toast.LENGTH_SHORT).show();
+				}	
+			}
+		});
+		
 	}
 
 }
