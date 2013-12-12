@@ -22,8 +22,8 @@
     <string name="next_show">Prochain spectacle à </string>
     <string name="duration">Durée </string>
     <string name="restaurant">Restaurant</string>
-    <string name="boutique">Boutique</string>
-    <string name="spectacle">Spectacle</string>
+    <string name="boutique">Boutique  </string>
+    <string name="spectacle">Spectacle </string>
     <string name="time_duration"> min.</string>
     <string name="legende">Légende</string>
     <string name="title_activity_focus_show">FocusShowActivity</string>
