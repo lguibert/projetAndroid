@@ -31,9 +31,7 @@ public class FocusShowActivity extends Activity implements OnClickListener {
 	private SpectacleManager sm;	
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		
-		
+	protected void onCreate(Bundle savedInstanceState) {	
 		uiHelper = new UiLifecycleHelper(FocusShowActivity.this, callback);
 	    uiHelper.onCreate(savedInstanceState);
 	    
@@ -42,17 +40,38 @@ public class FocusShowActivity extends Activity implements OnClickListener {
 		Intent i = getIntent();
 		this.id = i.getIntExtra("id", 0);	
 		setTitle("");
+		
 
 		this.sm = new SpectacleManager();
 		
 		this.buttonVote = (Button) findViewById(R.id.sendNoteButton);
 		this.ratingBar = (RatingBar) findViewById(R.id.ratingBar1);
+		this.ratingBar.setStepSize(1);
 		
-		this.buttonVote.setOnClickListener(this);
+		this.buttonVote.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(ratingBar.getRating() != 0){
+					sm.rateAsync(id, (int) ratingBar.getRating());
+					sm.setOnReceiveListener(new OnReceiveListener() {
+						
+						@Override
+						public void OnReceive(Object object) {
+							System.out.println(object);	
+							Toast.makeText(getApplicationContext(), "Merci d'avoir voter!", Toast.LENGTH_SHORT).show();
+						}
+					});
+				}else{
+					Toast.makeText(getApplicationContext(), "Veuillez donner une note avant de voter!", Toast.LENGTH_SHORT).show();
+				}
+				
+			}
+		});
 		
 
 		final Button shareButton = (Button) findViewById(R.id.shareButton);
-		
+		final ImageButton facebook = (ImageButton) findViewById(R.id.shareFacebookButton);
 		
 		sm.getById(this.id);
 		sm.setOnReceiveListener(new OnReceiveListener() {
@@ -84,7 +103,7 @@ public class FocusShowActivity extends Activity implements OnClickListener {
 					}
 				});
 				
-				final ImageButton facebook = (ImageButton) findViewById(R.id.shareFacebookButton);
+				
 				facebook.setOnClickListener(new OnClickListener() {
 					
 					@Override
