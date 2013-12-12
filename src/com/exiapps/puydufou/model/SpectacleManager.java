@@ -168,6 +168,12 @@ public class SpectacleManager extends AbstractManager {
 	public List<Representation> getBest(List<Spectacle> spectacles){
 		
 	
+		for (Spectacle spectacle : spectacles) {
+			if(spectacle.getId() == 8){
+				spectacle.setHours(new String[]  {"20:30"});
+			}
+		}
+		
 		List<Representation> representations = new ArrayList<Representation>();
 
 		
@@ -240,7 +246,9 @@ public class SpectacleManager extends AbstractManager {
 			   TimeUtils.getFirst(spectacles.get(i).getHours(),currentTime).getMinutes() == first.getMinutes() &&
 			   !haveSeen(spectacles.get(i))){
 				
+
 				firstSpectacle = spectacles.get(i);
+				
 			}
 		}
 		
