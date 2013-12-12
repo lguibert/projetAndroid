@@ -17,6 +17,7 @@ public class SpectacleManager extends AbstractManager {
 	private List<String> timetable;
 	private List<Spectacle> spectacles;
 	private List<Spectacle> seens = new ArrayList<Spectacle>();
+	private Spectacle spectacle;
 	
 	public SpectacleManager() {
 
@@ -128,7 +129,43 @@ public class SpectacleManager extends AbstractManager {
 		}.start();
 	}
 	
-public List<Representation> getBest(List<Spectacle> spectacles){
+	
+	public void getById(final int id){
+		
+		final Runnable runInUIThread = new Runnable() {
+			public void run() {
+				onReceiveListener.OnReceive(spectacle);
+			}
+		};
+
+		new Thread() {
+			@Override
+			public void run() {
+				timetable = new ArrayList<String>();
+
+				JSONArray array = readJsonArray(BASE_URI + "?type=select&var=1" + id);
+
+				try {
+					
+					JSONObject jSpectacle = array.getJSONObject(0);
+					
+					spectacle = new Spectacle(jSpectacle.getInt("IDSPECTACLE"), jSpectacle.getString("NOMSPECTACLE"), jSpectacle.getString("EVENEMENTLIESPECTACLE"),
+							jSpectacle.getInt("DUREESPECTACLE"), jSpectacle.getString("DATECREATIONSPECTACLE"), jSpectacle.getInt("NBACTEURSSPECTACLE"), jSpectacle.getDouble("LATITUDESPECTACLE"),
+							jSpectacle.getDouble("LONGITUDESPECTACLE"), jSpectacle.getString("IMAGESPECTACLE"));
+					
+					
+					
+				} catch (JSONException e) {
+
+					e.printStackTrace();
+				}	
+				
+				uiThreadCallback.post(runInUIThread);
+			}
+		}.start();
+	}
+	
+	public List<Representation> getBest(List<Spectacle> spectacles){
 		
 	
 		List<Representation> representations = new ArrayList<Representation>();
@@ -167,7 +204,7 @@ public List<Representation> getBest(List<Spectacle> spectacles){
 		return representations;
 	}	
 	
-	public Spectacle getFirst(List<Spectacle> spectacles,Time currentTime,int idPrev){
+	private Spectacle getFirst(List<Spectacle> spectacles,Time currentTime,int idPrev){
 		
 		Spectacle firstSpectacle = null;
 		
@@ -211,7 +248,7 @@ public List<Representation> getBest(List<Spectacle> spectacles){
 		return firstSpectacle;
 	}
 	
-	public boolean haveSeen(Spectacle spec){
+	private boolean haveSeen(Spectacle spec){
 		return seens.contains(spec);
 	}	
 
