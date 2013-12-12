@@ -3,6 +3,8 @@ package com.exiapps.puydufou.adapters;
 import java.util.List;
 
 import com.exiapps.puydufou.R;
+import com.exiapps.puydufou.bestschedule.Time;
+import com.exiapps.puydufou.bestschedule.TimeUtils;
 import com.exiapps.puydufou.model.entities.Spectacle;
 
 import android.content.Context;
@@ -31,9 +33,26 @@ public class SpectacleAdapter extends ArrayAdapter<Spectacle> {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.spectacle_list_item, parent,false);
 		
-		TextView textView = (TextView) view.findViewById(R.id.spectacleItemName);
+		TextView twName = (TextView) view.findViewById(R.id.spectacleItemName);
+		TextView twTime = (TextView) view.findViewById(R.id.spectacleItemTime);
 		
-		textView.setText(spectacles.get(position).getNom());
+		twName.setText(spectacles.get(position).getNom());
+		
+		Spectacle spectacle = this.spectacles.get(position);
+		
+		
+		String[] hours = spectacle.getHours();
+		
+		for (int i = 0; i < hours.length; i++) {
+			
+			Time time = TimeUtils.stringToTime(hours[i]);
+			
+			twTime.append(time.toString());
+			
+			if(i < hours.length - 1){
+				twTime.append(", ");
+			}
+		}
 		
 		return view;
 	}
