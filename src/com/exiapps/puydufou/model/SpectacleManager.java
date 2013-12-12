@@ -143,7 +143,7 @@ public class SpectacleManager extends AbstractManager {
 			public void run() {
 				timetable = new ArrayList<String>();
 
-				JSONArray array = readJsonArray(BASE_URI + "?type=select&var=1" + id);
+				JSONArray array = readJsonArray(BASE_URI + "?type=select&var=" + id);
 
 				try {
 					

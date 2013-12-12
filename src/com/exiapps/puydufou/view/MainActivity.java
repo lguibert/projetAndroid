@@ -83,32 +83,30 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		
+
 		for (int i = 0; i < this.mPagerAdapter.getCount(); i++) {
 			getSupportFragmentManager().beginTransaction().remove(this.mPagerAdapter.getItem(i)).commit();
 		}
-		
+
 		this.mPagerAdapter.clear();
 		this.pager.removeAllViews();
 		this.pager.setAdapter(null);
 
 		switch (position) {
 		case 0:
-			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
-			
+			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);			
 			this.pager.setAdapter(this.mPagerAdapter);
 			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 			break;
 		case 1:
-			this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);
-			
+			this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);			
 			this.pager.setAdapter(this.mPagerAdapter);
 			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 			this.initTab();
 			break;
 		case 2:
 			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
-			
+
 			this.pager.setAdapter(this.mPagerAdapter);
 			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 			this.initTab();
