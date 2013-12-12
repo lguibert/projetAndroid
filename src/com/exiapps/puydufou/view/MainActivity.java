@@ -24,6 +24,7 @@ import com.exiapps.puydufou.adapters.DrawerArrayAdapter;
 import com.exiapps.puydufou.adapters.InformationPagerAdapter;
 import com.exiapps.puydufou.adapters.MapPagerAdapter;
 import com.exiapps.puydufou.adapters.ScheduleFragmentPagerAdapter;
+import com.exiapps.puydufou.fragment.InformationFragment;
 import com.exiapps.puydufou.fragment.MapFragments;
 
 public class MainActivity extends FragmentActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
@@ -187,6 +188,10 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 			break;
 		// TODO: Veggie sandwich
 		}
+	}
+
+	public void onLinkClicked(View view) {
+		((InformationFragment) this.mPagerAdapter.getItem(1)).onLinkClicked();
 	}
 
 	public AbstractFragmentPagerAdater getmPagerAdapter() {

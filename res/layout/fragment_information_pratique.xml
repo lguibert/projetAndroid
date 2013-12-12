@@ -62,11 +62,11 @@
 
             <TextView
                 android:id="@+id/textViewClickLink"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:autoLink="web"
+                android:clickable="true"
                 android:gravity="center"
-                android:linksClickable="true"
+                android:onClick="onLinkClicked"
                 android:text="@string/information6" >
             </TextView>
         </LinearLayout>
