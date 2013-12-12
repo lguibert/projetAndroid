@@ -37,7 +37,7 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 	protected List<Spectacle> spectacles;
 	protected List<Service> boutiques;
 	protected List<Service> restaurants;
-	private String date;
+	private List<String> date;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,9 +51,9 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 	public void onResume() {
 		super.onResume();
 		map = ((SupportMapFragment) ((android.support.v4.app.Fragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map))).getMap();
+		markerRestaurant();
 		markerShow();
 		markerBoutique();
-		markerRestaurant();
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(PDF, 15));
 		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 		map.setOnMarkerClickListener(this);
@@ -101,18 +101,16 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 				spectacles = (List<Spectacle>) object;
 				if (spectacles.size() > 0) {
 					for (Spectacle spectacle : spectacles) {
-						// nextShow(spectacle.getId());
-						String snippet = ((String) getResources().getText(R.string.next_show)) + " " + "  " + " " + ((String) getResources().getText(R.string.duration)) + " "
-								+ String.valueOf(spectacle.getDuree()) + " " + ((String) getResources().getText(R.string.time_duration));
-						show.add(map.addMarker(new MarkerOptions().position(spectacle.getPosition()).title(spectacle.getNom()).snippet(snippet)
-								.icon(BitmapDescriptorFactory.fromResource(R.drawable.spectacle))));
+						show.add(map.addMarker(new MarkerOptions().position(spectacle.getPosition()).title(spectacle.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.spectacle))));
+						nextShow(spectacle.getId(), show.size() - 1);
 					}
 				}
 			}
 		});
 	}
 
-	private void nextShow(int idShow) {
+	private void nextShow(int idShow, final int indice) {
+		this.date = new ArrayList<String>();
 		SpectacleManager spectacleManager = new SpectacleManager();
 		spectacleManager.getNextShow(idShow);
 		spectacleManager.setOnReceiveListener(new OnReceiveListener() {
@@ -120,7 +118,10 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 			public void OnReceive(Object object) {
 				List<String> dates = (List<String>) object;
 				if (dates.size() > 0) {
-					date = dates.get(0);
+					String snippet = ((String) getResources().getText(R.string.next_show)) + " " + dates.get(0).substring(0, dates.get(0).length() - 3) + "\n"
+							+ ((String) getResources().getText(R.string.duration)) + " " + String.valueOf(spectacles.get(indice).getDuree()) + " "
+							+ ((String) getResources().getText(R.string.time_duration));
+					show.get(indice).setSnippet(snippet);
 				}
 			}
 		});
@@ -164,23 +165,27 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 
 	@Override
 	public boolean onMarkerClick(final Marker marker) {
-		final CharSequence[] items = { marker.getSnippet(), (String) getResources().getText(R.string.btn_info), (String) getResources().getText(R.string.btn_nav) };
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setTitle(marker.getTitle());
-		builder.setItems(items, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int item) {
-				if (item == items.length - 1) {
-					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=" + String.valueOf(marker.getPosition().latitude) + ","
-							+ String.valueOf(marker.getPosition().longitude + "&dirflg=w")));
-					startActivity(intent);
-				}
-				if (item == items.length - 2) {
+		if (marker.getSnippet() == null) {
+			nextShow(this.spectacles.get(show.indexOf(marker)).getId(), show.indexOf(marker));
+		} else {
+			final CharSequence[] items = { marker.getSnippet(), (String) getResources().getText(R.string.btn_info), (String) getResources().getText(R.string.btn_nav) };
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			builder.setTitle(marker.getTitle());
+			builder.setItems(items, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int item) {
+					if (item == items.length - 1) {
+						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=" + String.valueOf(marker.getPosition().latitude) + ","
+								+ String.valueOf(marker.getPosition().longitude + "&dirflg=w")));
+						startActivity(intent);
+					}
+					if (item == items.length - 2) {
 
+					}
 				}
-			}
-		});
-		AlertDialog alert = builder.create();
-		alert.show();
+			});
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
 		return true;
 	}
 }
