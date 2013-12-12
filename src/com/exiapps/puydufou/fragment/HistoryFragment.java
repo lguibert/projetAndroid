@@ -15,7 +15,7 @@ public class HistoryFragment extends AbstractFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.page_gauche_layout, container, false);
+		return inflater.inflate(R.layout.fragment_historique, container, false);
 	}
 
 	@Override
