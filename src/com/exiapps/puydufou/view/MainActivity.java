@@ -111,6 +111,31 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 			this.pager.setAdapter(this.mPagerAdapter);
 			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 			this.initTab();
+			this.initTabposition(1);
+			break;
+		case 3:
+			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
+
+			this.pager.setAdapter(this.mPagerAdapter);
+			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			this.initTab();
+			this.initTabposition(2);
+			break;
+		case 4:
+			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
+
+			this.pager.setAdapter(this.mPagerAdapter);
+			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			this.initTab();
+			this.initTabposition(3);
+			break;
+		case 5:
+			this.mPagerAdapter = new InformationPagerAdapter(super.getSupportFragmentManager(), this);
+
+			this.pager.setAdapter(this.mPagerAdapter);
+			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			this.initTab();
+			this.initTabposition(0);
 			break;
 		default: {
 		}
@@ -118,6 +143,11 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 		}
 
 		this.drawerLayout.closeDrawers();
+	}
+
+	private void initTabposition(int i) {
+		getActionBar().selectTab(getActionBar().getTabAt(i));
+
 	}
 
 	private void initTab() {
