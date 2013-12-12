@@ -6,11 +6,12 @@
     <TextView 
         android:id="@+id/spectacleItemName"
         android:layout_height="24dp"
-        android:layout_width="wrap_content"/>
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"        />
     <TextView 
         android:id="@+id/spectacleItemTime"
         android:layout_height="24dp"
         android:layout_width="wrap_content"
-        android:layout_below="@id/spectacleItemName"
-        android:text="00:00, 00:00, 00:00"/>
+        android:layout_below="@id/spectacleItemName"/>
 </RelativeLayout>

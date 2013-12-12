@@ -11,6 +11,7 @@ public class Spectacle {
 	private int nbActeur;
 	private LatLng position;
 	private String image;
+	private String[] hours;
 
 	public Spectacle() {
 	}
@@ -95,6 +96,14 @@ public class Spectacle {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public String[] getHours() {
+		return hours;
+	}
+
+	public void setHours(String[] hours) {
+		this.hours = hours;
 	}
 
 }
