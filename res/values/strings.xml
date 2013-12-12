@@ -26,5 +26,7 @@
     <string name="spectacle">Spectacle</string>
     <string name="time_duration"> min.</string>
     <string name="legende">Légende</string>
+    <string name="title_activity_focus_show">FocusShowActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

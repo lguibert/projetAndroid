@@ -54,6 +54,11 @@
             android:value="AIzaSyD20RJFiwlsj_NPdM4m7Ak6onELVviwNhM" />
 
         <uses-library android:name="com.google.android.maps" />
+
+        <activity
+            android:name="com.exiapps.puydufou.view.FocusShowActivity"
+            android:label="@string/title_activity_focus_show" >
+        </activity>
     </application>
 
 </manifest>
