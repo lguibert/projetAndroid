@@ -7,13 +7,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.exiapps.puydufou.bestschedule.Representation;
+import com.exiapps.puydufou.bestschedule.Time;
+import com.exiapps.puydufou.bestschedule.TimeUtils;
 import com.exiapps.puydufou.model.entities.Spectacle;
 
 public class SpectacleManager extends AbstractManager {
 
 	private List<String> timetable;
 	private List<Spectacle> spectacles;
-
+	private List<Spectacle> seens = new ArrayList<Spectacle>();
+	
 	public SpectacleManager() {
 
 	}
@@ -69,6 +73,17 @@ public class SpectacleManager extends AbstractManager {
 						Spectacle spectacle = new Spectacle(jSpectacle.getInt("IDSPECTACLE"), jSpectacle.getString("NOMSPECTACLE"), jSpectacle.getString("EVENEMENTLIESPECTACLE"),
 								jSpectacle.getInt("DUREESPECTACLE"), jSpectacle.getString("DATECREATIONSPECTACLE"), jSpectacle.getInt("NBACTEURSSPECTACLE"), jSpectacle.getDouble("LATITUDESPECTACLE"),
 								jSpectacle.getDouble("LONGITUDESPECTACLE"), jSpectacle.getString("IMAGESPECTACLE"));
+						
+						
+						JSONArray jHours = readJsonArray(BASE_URI + "?type=select&var=hour&id=" + spectacle.getId());						
+						String hours[] = new String[jHours.length()];
+						
+						for (int j = 0; j < jHours.length(); j++) {
+							hours[j] = jHours.getJSONObject(j).getString("VALEURHORAIRE");
+						}
+						
+						spectacle.setHours(hours);
+						
 						spectacles.add(spectacle);
 
 					} catch (JSONException e) {
@@ -112,5 +127,92 @@ public class SpectacleManager extends AbstractManager {
 			}
 		}.start();
 	}
+	
+public List<Representation> getBest(List<Spectacle> spectacles){
+		
+	
+		List<Representation> representations = new ArrayList<Representation>();
+
+		
+		Time currentTime = new Time(9, 0);
+		
+		int count = 0;
+		int idPrev = 0;
+		
+		
+		
+		do{
+			
+			Spectacle spec = getFirst(spectacles, currentTime,idPrev);
+			System.out.println(
+					currentTime.getHour() + ":" + currentTime.getMinutes() + "-" +
+					spec.getNom() + " - " +
+					TimeUtils.getFirst(spec.getHours(), currentTime).getHour() + ":" +
+					TimeUtils.getFirst(spec.getHours(), currentTime).getMinutes() + " - "+
+					spec.getDuree());
+			
+			
+			
+			idPrev = spec.getId();
+			
+			seens.add(spec);
+			
+			representations.add(new Representation(spec, TimeUtils.getFirst(spec.getHours(), currentTime)));
+			
+			currentTime = TimeUtils.timeAdd(TimeUtils.getFirst(spec.getHours(), currentTime), spec.getDuree() + 15);
+			count++;
+		}
+		while(count < 12);
+		
+		return representations;
+	}	
+	
+	public Spectacle getFirst(List<Spectacle> spectacles,Time currentTime,int idPrev){
+		
+		Spectacle firstSpectacle = null;
+		
+		int size = 0;
+		
+			
+		
+		for (int i = 0; i < spectacles.size(); i++) {
+			
+			if(!haveSeen(spectacles.get(i))){
+				size++;
+			}
+		}
+		
+		Time[] firsts = new Time[size];
+		
+		int n = 0;		
+		for (int i = 0; n < size; i++) {
+			
+			if(!haveSeen(spectacles.get(i))){
+				firsts[n] = TimeUtils.getFirst(spectacles.get(i).getHours(),currentTime);
+				n++;
+				
+				//System.out.println(spectacles.get(i).getNom());
+			}
+		}
+		
+		Time first = TimeUtils.getFirst(firsts, currentTime);
+		
+		for (int i = 0; i < spectacles.size(); i++) {
+
+			if(TimeUtils.getFirst(spectacles.get(i).getHours(),currentTime).getHour() == first.getHour() &&
+			   TimeUtils.getFirst(spectacles.get(i).getHours(),currentTime).getMinutes() == first.getMinutes() &&
+			   !haveSeen(spectacles.get(i))){
+				
+				firstSpectacle = spectacles.get(i);
+			}
+		}
+		
+		
+		return firstSpectacle;
+	}
+	
+	public boolean haveSeen(Spectacle spec){
+		return seens.contains(spec);
+	}	
 
 }
