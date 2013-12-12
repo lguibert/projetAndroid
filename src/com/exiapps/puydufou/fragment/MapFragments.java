@@ -110,7 +110,7 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 	}
 
 	private void nextShow(int idShow, final int indice) {
-		this.date = new ArrayList<String>();
+		this.setDate(new ArrayList<String>());
 		SpectacleManager spectacleManager = new SpectacleManager();
 		spectacleManager.getNextShow(idShow);
 		spectacleManager.setOnReceiveListener(new OnReceiveListener() {
@@ -187,5 +187,13 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 			alert.show();
 		}
 		return true;
+	}
+
+	public List<String> getDate() {
+		return date;
+	}
+
+	public void setDate(List<String> date) {
+		this.date = date;
 	}
 }

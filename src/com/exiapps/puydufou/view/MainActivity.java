@@ -24,6 +24,7 @@ import com.exiapps.puydufou.adapters.DrawerArrayAdapter;
 import com.exiapps.puydufou.adapters.InformationPagerAdapter;
 import com.exiapps.puydufou.adapters.MapPagerAdapter;
 import com.exiapps.puydufou.adapters.ScheduleFragmentPagerAdapter;
+import com.exiapps.puydufou.fragment.InformationFragment;
 import com.exiapps.puydufou.fragment.MapFragments;
 
 public class MainActivity extends FragmentActivity implements ListView.OnItemClickListener, ActionBar.TabListener {
@@ -52,7 +53,7 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		this.mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_launcher, R.string.drawer_open, R.string.drawer_close) {
+		this.mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_launcher.png, R.string.drawer_open, R.string.drawer_close) {
 			@Override
 			public void onDrawerClosed(View view) {
 				getActionBar().setTitle(R.string.title);
@@ -94,12 +95,12 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 
 		switch (position) {
 		case 0:
-			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);			
+			this.mPagerAdapter = new MapPagerAdapter(super.getSupportFragmentManager(), this);
 			this.pager.setAdapter(this.mPagerAdapter);
 			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 			break;
 		case 1:
-			this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);			
+			this.mPagerAdapter = new ScheduleFragmentPagerAdapter(super.getSupportFragmentManager(), this);
 			this.pager.setAdapter(this.mPagerAdapter);
 			this.getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 			this.initTab();
@@ -185,6 +186,10 @@ public class MainActivity extends FragmentActivity implements ListView.OnItemCli
 			break;
 		// TODO: Veggie sandwich
 		}
+	}
+
+	public void onLinkClicked(View view) {
+		((InformationFragment) this.mPagerAdapter.getItem(1)).onLinkClicked();
 	}
 
 	public AbstractFragmentPagerAdater getmPagerAdapter() {
