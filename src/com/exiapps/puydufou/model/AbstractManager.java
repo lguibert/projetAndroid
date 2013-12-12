@@ -21,7 +21,7 @@ public abstract class AbstractManager {
 	
 	protected OnReceiveListener onReceiveListener;
 	
-	protected static String BASE_URI = "http://192.168.0.5/projetAndroid/";
+	protected static String BASE_URI = "http://192.168.0.15/projetAndroid/";
 
 	protected JSONArray readJsonArray(String uri) {
 
