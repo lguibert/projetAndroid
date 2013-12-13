@@ -18,6 +18,7 @@ import com.exiapps.puydufou.model.ServiceManager;
 import com.exiapps.puydufou.model.SpectacleManager;
 import com.exiapps.puydufou.model.entities.Service;
 import com.exiapps.puydufou.model.entities.Spectacle;
+import com.exiapps.puydufou.view.FocusShowActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -179,7 +180,9 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 						startActivity(intent);
 					}
 					if (item == items.length - 2) {
-
+						Intent i = new Intent(getActivity().getApplicationContext(), FocusShowActivity.class);	
+						i.putExtra("id", spectacles.get(items.length - 2).getId());		
+						startActivity(i);
 					}
 				}
 			});

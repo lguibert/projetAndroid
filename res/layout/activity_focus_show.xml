@@ -105,16 +105,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/ratingBar1"
         android:layout_below="@+id/ratingBar1"
+        android:layout_toLeftOf="@+id/shareFacebookButton"
         android:text="@string/validateNote" />
-
-    <Button
-        android:id="@+id/shareButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/sendNoteButton"
-        android:layout_alignBottom="@+id/sendNoteButton"
-        android:layout_alignRight="@+id/ratingBar1"
-        android:text="@string/buttonShare" />
 
     <ImageButton
         android:id="@+id/shareFacebookButton"
@@ -123,6 +115,14 @@
         android:layout_alignTop="@+id/shareButton"
         android:layout_toLeftOf="@+id/shareButton"
         android:src="@drawable/share_facebook" />
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ratingBar1"
+        android:text="@string/buttonShare" />
 
 </RelativeLayout>
 </ScrollView>
