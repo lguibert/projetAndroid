@@ -22,4 +22,17 @@ public class Time {
 	public void setMinutes(int minutes) {
 		this.minutes = minutes;
 	}
+	@Override
+	public String toString() {
+		
+		String sMin = String.valueOf(minutes);
+		
+		if(sMin.length() == 1){
+			sMin = "0"+sMin;
+		}
+		
+		return this.hour + ":" + sMin;
+	}
+	
+	
 }

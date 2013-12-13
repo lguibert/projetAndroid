@@ -35,7 +35,7 @@ public class RepresentationArrayAdapter extends ArrayAdapter<Representation>{
 
 		twName.setText(this.spectacles.get(position).getSpectacle().getNom());
 		
-		twTime.setText(this.spectacles.get(position).getTime().getHour() + ":" + this.spectacles.get(position).getTime().getMinutes());
+		twTime.setText(this.spectacles.get(position).getTime().toString());
 		return view;
 	}
 	

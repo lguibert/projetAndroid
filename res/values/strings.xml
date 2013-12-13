@@ -4,7 +4,7 @@
     <string name="app_name">Puy du fou</string>
     <string name="action_settings">Settings</string>
     <string name="map">Plan</string>
-    <string name="schedule">Planing</string>
+    <string name="schedule">Planning</string>
     <string name="info">Informations pratiques</string>
     <string name="historic">Historique du parc</string>
     <string name="restaurants">Restaurants</string>
@@ -28,6 +28,15 @@
     <string name="legende">Légende</string>
     <string name="title_activity_focus_show">FocusShowActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="infoSpec">Informations:</string>
+    <string name="infoPracSpec">Informations pratiques:</string>
+    <string name="dureeSpec">Durée:</string>
+    <string name="dateCreaSpec">Date de création:</string>
+    <string name="nbActSpec">Nombre d\'acteurs:</string>
+    <string name="eventLieSpec">Evenenement lié:</string>
+    <string name="buttonShare">Partager</string>
+    <string name="validateNote">Voter !</string>
+    <string name="app_id">231097407065065</string>
 
     <!-- Historique -->
     <string name="historique1">Au Commencement</string>

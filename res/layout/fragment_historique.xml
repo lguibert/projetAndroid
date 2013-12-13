@@ -24,7 +24,7 @@
                 android:textColor="@color/date" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/labelDateCrea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -41,7 +41,7 @@
                 android:textColor="@color/date" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/labelDuree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

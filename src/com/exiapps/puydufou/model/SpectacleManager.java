@@ -19,6 +19,8 @@ public class SpectacleManager extends AbstractManager {
 	private List<Spectacle> seens = new ArrayList<Spectacle>();
 	private Spectacle spectacle;
 	
+	private int note;
+	
 	public SpectacleManager() {
 
 	}
@@ -149,7 +151,7 @@ public class SpectacleManager extends AbstractManager {
 					
 					JSONObject jSpectacle = array.getJSONObject(0);
 					
-					spectacle = new Spectacle(jSpectacle.getInt("IDSPECTACLE"), jSpectacle.getString("NOMSPECTACLE"), jSpectacle.getString("EVENEMENTLIESPECTACLE"),
+					spectacle = new Spectacle(jSpectacle.getInt("IDSPECTACLE"), jSpectacle.getString("NOMSPECTACLE"), jSpectacle.getString("INFOSHISTOSPECTACLE"),
 							jSpectacle.getInt("DUREESPECTACLE"), jSpectacle.getString("DATECREATIONSPECTACLE"), jSpectacle.getInt("NBACTEURSSPECTACLE"), jSpectacle.getDouble("LATITUDESPECTACLE"),
 							jSpectacle.getDouble("LONGITUDESPECTACLE"), jSpectacle.getString("IMAGESPECTACLE"));
 					
@@ -159,6 +161,33 @@ public class SpectacleManager extends AbstractManager {
 
 					e.printStackTrace();
 				}	
+				
+				uiThreadCallback.post(runInUIThread);
+			}
+		}.start();
+	}
+	
+	public void rateAsync(final int idSpectacle, final int rating){
+		
+		final Runnable runInUIThread = new Runnable() {
+			public void run() {
+				onReceiveListener.OnReceive(note);
+			}
+		};
+
+		new Thread() {
+			@Override
+			public void run() {
+				note = -1;
+				
+				try {
+					note = readJsonObject(BASE_URI + "?type=note&var="+rating+","+idSpectacle).getInt("result");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				} 
+				catch (NullPointerException e) {
+					e.printStackTrace();
+				} 				
 				
 				uiThreadCallback.post(runInUIThread);
 			}
