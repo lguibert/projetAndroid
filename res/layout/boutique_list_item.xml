@@ -6,6 +6,7 @@
     <TextView
         android:id="@+id/boutiqueItemName"
         android:layout_width="wrap_content"
-        android:layout_height="24dp" />
+        android:layout_height="24dp"
+        android:textSize="@dimen/slider" />
 
 </RelativeLayout>
