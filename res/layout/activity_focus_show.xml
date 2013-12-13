@@ -21,15 +21,6 @@
         android:src="@drawable/spectacle" />
 
     <TextView
-        android:id="@+id/labelNbAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginLeft="24dp"
-        android:layout_toRightOf="@+id/imageView1"
-        android:text="@string/nbActSpec" />
-
-    <TextView
         android:id="@+id/labelDuree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,21 +90,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp" />
 
-    <Button
-        android:id="@+id/sendNoteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ratingBar1"
-        android:layout_below="@+id/ratingBar1"
-        android:layout_toLeftOf="@+id/shareFacebookButton"
-        android:text="@string/validateNote" />
-
     <ImageButton
         android:id="@+id/shareFacebookButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/shareButton"
         android:layout_alignTop="@+id/shareButton"
         android:layout_toLeftOf="@+id/shareButton"
+        android:layout_toRightOf="@+id/sendNoteButton"
         android:src="@drawable/share_facebook" />
 
     <Button
@@ -122,7 +106,26 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/ratingBar1"
+        android:layout_toRightOf="@+id/labelDateCrea"
         android:text="@string/buttonShare" />
+
+    <Button
+        android:id="@+id/sendNoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/labelDuree"
+        android:layout_alignTop="@+id/shareFacebookButton"
+        android:text="@string/validateNote" />
+
+    <TextView
+        android:id="@+id/labelNbAct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/imageView1"
+        android:text="@string/nbActSpec" />
 
 </RelativeLayout>
 </ScrollView>

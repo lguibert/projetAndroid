@@ -180,9 +180,11 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 						startActivity(intent);
 					}
 					if (item == items.length - 2) {
-						Intent i = new Intent(getActivity().getApplicationContext(), FocusShowActivity.class);	
-						i.putExtra("id", spectacles.get(items.length - 2).getId());		
-						startActivity(i);
+						if(show.indexOf(marker) >= 0){
+							Intent i = new Intent(getActivity().getApplicationContext(), FocusShowActivity.class);	
+							i.putExtra("id", spectacles.get(show.indexOf(marker)).getId());
+							startActivity(i);
+						}						
 					}
 				}
 			});
