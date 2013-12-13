@@ -1,7 +1,10 @@
 package com.exiapps.puydufou.view;
 
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -40,6 +43,7 @@ public class FocusShowActivity extends Activity implements OnClickListener {
 		Intent i = getIntent();
 		this.id = i.getIntExtra("id", 0);	
 		setTitle("");
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 		
 
 		this.sm = new SpectacleManager();
