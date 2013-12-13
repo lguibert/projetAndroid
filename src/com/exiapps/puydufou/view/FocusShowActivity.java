@@ -111,7 +111,7 @@ public class FocusShowActivity extends Activity implements OnClickListener {
 						if (FacebookDialog.canPresentShareDialog(getApplicationContext(), FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
 							FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(FocusShowActivity.this)
 							.setLink("http://www.puydufou.com/")
-							.setApplicationName("Puy Du Fou")
+							.setApplicationName("PuyDuFou")
 							.setDescription("A vue le spectacle "+spectacle.getNom())							
 							.build();
 							uiHelper.trackPendingDialogCall(shareDialog.present());	
