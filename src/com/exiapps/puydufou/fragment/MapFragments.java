@@ -166,32 +166,39 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 
 	@Override
 	public boolean onMarkerClick(final Marker marker) {
-		if (marker.getSnippet() == null) {
-			nextShow(this.spectacles.get(show.indexOf(marker)).getId(), show.indexOf(marker));
-		} else {
-			final CharSequence[] items = { marker.getSnippet(), (String) getResources().getText(R.string.btn_info), (String) getResources().getText(R.string.btn_nav) };
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-			builder.setTitle(marker.getTitle());
-			builder.setItems(items, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int item) {
-					if (item == items.length - 1) {
-						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=" + String.valueOf(marker.getPosition().latitude) + ","
-								+ String.valueOf(marker.getPosition().longitude + "&dirflg=w")));
-						startActivity(intent);
-					}
-					if (item == items.length - 2) {
-						if(show.indexOf(marker) >= 0){
-							Intent i = new Intent(getActivity().getApplicationContext(), FocusShowActivity.class);	
-							i.putExtra("id", spectacles.get(show.indexOf(marker)).getId());
-							startActivity(i);
-						}						
+		final CharSequence[] items = { marker.getSnippet(), (String) getResources().getText(R.string.btn_info), (String) getResources().getText(R.string.btn_nav) };
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setTitle(marker.getTitle());
+		builder.setItems(items, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int item) {
+				if (item == items.length - 1) {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=" + String.valueOf(marker.getPosition().latitude) + ","
+							+ String.valueOf(marker.getPosition().longitude + "&dirflg=w")));
+					startActivity(intent);
+				}
+				if (item == items.length - 2) {
+					int indice = indice(marker);
+					if (indice >= 0) {
+						Intent i = new Intent(getActivity().getApplicationContext(), FocusShowActivity.class);
+						i.putExtra("id", indice);
+						startActivity(i);
 					}
 				}
-			});
-			AlertDialog alert = builder.create();
-			alert.show();
-		}
+			}
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
 		return true;
+	}
+
+	public int indice(Marker marker) {
+		int indice = -1;
+		for (Spectacle spectacle : this.spectacles) {
+			if (spectacle.getNom().toString().equals(marker.getTitle().toString())) {
+				indice = spectacle.getId();
+			}
+		}
+		return indice;
 	}
 
 	public List<String> getDate() {
