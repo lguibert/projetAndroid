@@ -37,6 +37,7 @@
     <string name="buttonShare">Partager</string>
     <string name="validateNote">Voter !</string>
     <string name="app_id">231097407065065</string>
+    <string name="btn_facebook">bouton Facebook</string>
 
     <!-- Historique -->
     <string name="historique1">Au Commencement</string>

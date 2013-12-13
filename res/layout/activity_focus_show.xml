@@ -1,8 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-    
+    android:layout_height="wrap_content" >
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="402dp"
@@ -12,126 +12,116 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context=".FocusShowActivity" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/spectacle" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/spectacle" />
 
-    <TextView
-        android:id="@+id/labelDuree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/labelNbAct"
-        android:layout_alignTop="@+id/imageView1"
-        android:text="@string/dureeSpec" />
+        <TextView
+            android:id="@+id/labelDuree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/labelNbAct"
+            android:layout_alignTop="@+id/imageView1"
+            android:text="@string/dureeSpec" />
 
-    <TextView
-        android:id="@+id/labelDateCrea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/labelNbAct"
-        android:layout_below="@+id/labelNbAct"
-        android:layout_marginTop="20dp"
-        android:text="@string/dateCreaSpec" />
+        <TextView
+            android:id="@+id/labelDateCrea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/labelNbAct"
+            android:layout_below="@+id/labelNbAct"
+            android:layout_marginTop="20dp"
+            android:text="@string/dateCreaSpec" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_below="@+id/labelDateCrea"
-        android:layout_marginTop="35dp"
-        android:text="@string/infoSpec" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView1"
+            android:layout_below="@+id/labelDateCrea"
+            android:layout_marginTop="35dp"
+            android:text="@string/infoSpec" />
 
-    <TextView
-        android:id="@+id/usefullInfos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
+        <TextView
+            android:id="@+id/usefullInfos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/textView1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/dureeSpec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/labelDuree"
-        android:layout_alignBottom="@+id/labelDuree"
-        android:layout_marginLeft="17dp"
-        android:layout_toRightOf="@+id/labelNbAct"
-         />
+        <TextView
+            android:id="@+id/dureeSpec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/labelDuree"
+            android:layout_alignBottom="@+id/labelDuree"
+            android:layout_marginLeft="17dp"
+            android:layout_toRightOf="@+id/labelNbAct" />
 
-    <TextView
-        android:id="@+id/dateCrea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/labelDateCrea"
-        android:layout_alignBottom="@+id/labelDateCrea"
-        android:layout_alignRight="@+id/dureeSpec"
-         />
+        <TextView
+            android:id="@+id/dateCrea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/labelDateCrea"
+            android:layout_alignBottom="@+id/labelDateCrea"
+            android:layout_alignRight="@+id/dureeSpec" />
 
-    <TextView
-        android:id="@+id/nbAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/labelDateCrea"
-        android:layout_alignLeft="@+id/dureeSpec"
-         />
+        <TextView
+            android:id="@+id/nbAct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/labelDateCrea"
+            android:layout_alignLeft="@+id/dureeSpec" />
 
-    <RatingBar
-        android:id="@+id/ratingBar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/usefullInfos"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp" />
+        <RatingBar
+            android:id="@+id/ratingBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/usefullInfos"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="27dp" />
 
-    <ImageButton
-        android:id="@+id/shareFacebookButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/shareButton"
-        android:layout_alignTop="@+id/shareButton"
-        android:layout_toLeftOf="@+id/shareButton"
-        android:layout_toRightOf="@+id/sendNoteButton"
-        android:maxWidth="30dp"
-        android:minWidth="30dp"
-        android:src="@drawable/share_facebook" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ratingBar1" >
 
-    <Button
-        android:id="@+id/shareButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/ratingBar1"
-        android:layout_toRightOf="@+id/labelDateCrea"
-        android:text="@string/buttonShare"
-        android:maxWidth="30dp"
-        android:minWidth="30dp" />
+            <Button
+                android:id="@+id/sendNoteButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".40"
+                android:text="@string/validateNote" />
 
-    <Button
-        android:id="@+id/sendNoteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/labelDuree"
-        android:layout_alignTop="@+id/shareFacebookButton"
-        android:maxWidth="30dp"
-        android:minWidth="30dp"
-        android:text="@string/validateNote" />
+            <ImageButton
+                android:id="@+id/shareFacebookButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".20"
+                android:contentDescription="@string/btn_facebook"
+                android:src="@drawable/share_facebook" />
 
-    <TextView
-        android:id="@+id/labelNbAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/imageView1"
-        android:text="@string/nbActSpec" />
+            <Button
+                android:id="@+id/shareButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".40"
+                android:text="@string/buttonShare" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/labelNbAct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView1"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/imageView1"
+            android:text="@string/nbActSpec" />
+    </RelativeLayout>
+
 </ScrollView>
