@@ -1,5 +1,6 @@
 package com.exiapps.puydufou.view;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;

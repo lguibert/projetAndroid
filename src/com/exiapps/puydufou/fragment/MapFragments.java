@@ -99,12 +99,17 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 		spectacleManager.setOnReceiveListener(new OnReceiveListener() {
 			@Override
 			public void OnReceive(Object object) {
+				if(isDetached()){
+					
+				}else{
+				
 				spectacles = (List<Spectacle>) object;
 				if (spectacles.size() > 0) {
 					for (Spectacle spectacle : spectacles) {
 						show.add(map.addMarker(new MarkerOptions().position(spectacle.getPosition()).title(spectacle.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.spectacle))));
 						nextShow(spectacle.getId(), show.size() - 1);
 					}
+				}
 				}
 			}
 		});
@@ -135,13 +140,15 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 		serviceManager.setOnReceiveListener(new OnReceiveListener() {
 			@Override
 			public void OnReceive(Object object) {
-				boutiques = ((List<Service>) object);
-				if (boutiques.size() > 0) {
-					for (Service service : boutiques) {
-						boutique.add(map.addMarker(new MarkerOptions().position(service.getPosition()).title(service.getNom()).snippet(((String) getResources().getText(R.string.boutique)))
-								.icon(BitmapDescriptorFactory.fromResource(R.drawable.boutique))));
+				if(!isDetached()){
+					boutiques = ((List<Service>) object);
+					if (boutiques.size() > 0) {
+						for (Service service : boutiques) {
+							boutique.add(map.addMarker(new MarkerOptions().position(service.getPosition()).title(service.getNom()).snippet(((String) getResources().getText(R.string.boutique)))
+									.icon(BitmapDescriptorFactory.fromResource(R.drawable.boutique))));
+						}
 					}
-				}
+				}			
 			}
 		});
 	}
@@ -153,13 +160,15 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 		serviceManager.setOnReceiveListener(new OnReceiveListener() {
 			@Override
 			public void OnReceive(Object object) {
-				restaurants = ((List<Service>) object);
-				if (restaurants.size() > 0) {
-					for (Service service : restaurants) {
-						restaurant.add(map.addMarker(new MarkerOptions().position(service.getPosition()).title(service.getNom()).snippet(((String) getResources().getText(R.string.restaurant)))
-								.icon(BitmapDescriptorFactory.fromResource(R.drawable.restaurant))));
+				if(!isDetached()){
+					restaurants = ((List<Service>) object);
+					if (restaurants.size() > 0) {
+						for (Service service : restaurants) {
+							restaurant.add(map.addMarker(new MarkerOptions().position(service.getPosition()).title(service.getNom()).snippet(((String) getResources().getText(R.string.restaurant)))
+									.icon(BitmapDescriptorFactory.fromResource(R.drawable.restaurant))));
+						}
 					}
-				}
+				}				
 			}
 		});
 	}
