@@ -189,7 +189,6 @@ public class FocusShowActivity extends Activity implements OnClickListener {
 		sm.setOnReceiveListener(new OnReceiveListener() {
 			
 			
-			
 			@Override
 			public void OnReceive(Object object) {
 				int note = ((Integer) object).intValue();

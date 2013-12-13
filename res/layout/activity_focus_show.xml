@@ -98,6 +98,8 @@
         android:layout_alignTop="@+id/shareButton"
         android:layout_toLeftOf="@+id/shareButton"
         android:layout_toRightOf="@+id/sendNoteButton"
+        android:maxWidth="30dp"
+        android:minWidth="30dp"
         android:src="@drawable/share_facebook" />
 
     <Button
@@ -107,7 +109,9 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/ratingBar1"
         android:layout_toRightOf="@+id/labelDateCrea"
-        android:text="@string/buttonShare" />
+        android:text="@string/buttonShare"
+        android:maxWidth="30dp"
+        android:minWidth="30dp" />
 
     <Button
         android:id="@+id/sendNoteButton"
@@ -116,6 +120,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/labelDuree"
         android:layout_alignTop="@+id/shareFacebookButton"
+        android:maxWidth="30dp"
+        android:minWidth="30dp"
         android:text="@string/validateNote" />
 
     <TextView

@@ -44,9 +44,12 @@ public class BoutiqueFragment extends AbstractFragment implements OnReceiveListe
 
 	@Override
 	public void OnReceive(Object object) {
-		List<Service> services = (List<Service>) object;
+		if(!isDetached()){
+			List<Service> services = (List<Service>) object;
 
-		this.listView.setAdapter(new BoutiqueAdapter(getActivity(), R.id.boutiqueItemName, services));
+			this.listView.setAdapter(new BoutiqueAdapter(getActivity(), R.id.boutiqueItemName, services));
+		}
+		
 	}
 
 }

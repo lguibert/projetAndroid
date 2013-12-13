@@ -68,9 +68,11 @@ public class ScheduleFragment extends AbstractFragment implements OnReceiveListe
 
 	@Override
 	public void OnReceive(Object object) {
-		List<Spectacle> spectacles = (List<Spectacle>) object;
-		
-		this.listView.setAdapter(new SpectacleAdapter(getActivity(), R.id.spectacleItemName, spectacles));
+		if(!isDetached()){
+			List<Spectacle> spectacles = (List<Spectacle>) object;
+			
+			this.listView.setAdapter(new SpectacleAdapter(getActivity(), R.id.spectacleItemName, spectacles));
+		}		
 	}
 	
 }

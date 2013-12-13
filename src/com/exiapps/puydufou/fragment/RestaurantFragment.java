@@ -44,9 +44,11 @@ public class RestaurantFragment extends AbstractFragment implements OnReceiveLis
 
 	@Override
 	public void OnReceive(Object object) {
-		List<Service> services = (List<Service>) object;
+		if(!isDetached()){
+			List<Service> services = (List<Service>) object;
 
-		this.listView.setAdapter(new RestaurantAdapter(getActivity(), R.id.restaurantItemName, services));
+			this.listView.setAdapter(new RestaurantAdapter(getActivity(), R.id.restaurantItemName, services));
+		}		
 	}
 
 }

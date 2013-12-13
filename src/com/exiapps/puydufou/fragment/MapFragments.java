@@ -99,17 +99,14 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 		spectacleManager.setOnReceiveListener(new OnReceiveListener() {
 			@Override
 			public void OnReceive(Object object) {
-				if(isDetached()){
-					
-				}else{
-				
-				spectacles = (List<Spectacle>) object;
-				if (spectacles.size() > 0) {
-					for (Spectacle spectacle : spectacles) {
-						show.add(map.addMarker(new MarkerOptions().position(spectacle.getPosition()).title(spectacle.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.spectacle))));
-						nextShow(spectacle.getId(), show.size() - 1);
+				if(!isDetached()){
+					spectacles = (List<Spectacle>) object;
+					if (spectacles.size() > 0) {
+						for (Spectacle spectacle : spectacles) {
+							show.add(map.addMarker(new MarkerOptions().position(spectacle.getPosition()).title(spectacle.getNom()).icon(BitmapDescriptorFactory.fromResource(R.drawable.spectacle))));
+							nextShow(spectacle.getId(), show.size() - 1);
+						}
 					}
-				}
 				}
 			}
 		});
@@ -122,12 +119,14 @@ public class MapFragments extends AbstractFragment implements OnMarkerClickListe
 		spectacleManager.setOnReceiveListener(new OnReceiveListener() {
 			@Override
 			public void OnReceive(Object object) {
-				List<String> dates = (List<String>) object;
-				if (dates.size() > 0) {
-					String snippet = ((String) getResources().getText(R.string.next_show)) + " " + dates.get(0).substring(0, dates.get(0).length() - 3) + "\n"
-							+ ((String) getResources().getText(R.string.duration)) + " " + String.valueOf(spectacles.get(indice).getDuree()) + " "
-							+ ((String) getResources().getText(R.string.time_duration));
-					show.get(indice).setSnippet(snippet);
+				if(!isDetached()){			
+					List<String> dates = (List<String>) object;
+					if (dates.size() > 0) {
+						String snippet = ((String) getResources().getText(R.string.next_show)) + " " + dates.get(0).substring(0, dates.get(0).length() - 3) + "\n"
+								+ ((String) getResources().getText(R.string.duration)) + " " + String.valueOf(spectacles.get(indice).getDuree()) + " "
+								+ ((String) getResources().getText(R.string.time_duration));
+						show.get(indice).setSnippet(snippet);
+					}
 				}
 			}
 		});

@@ -56,11 +56,14 @@ public class BestScheduleFragment extends AbstractFragment implements OnReceiveL
 
 	@Override
 	public void OnReceive(Object object) {
-		List<Spectacle> spectacles = (List<Spectacle>) object;
+		if(!isDetached()){		
 		
-		List<Representation> representations = this.spectacleManager.getBest(spectacles);
-		
-		this.listView.setAdapter(new RepresentationArrayAdapter(getActivity(), R.id.spectacleItemName, representations));
+			List<Spectacle> spectacles = (List<Spectacle>) object;
+			
+			List<Representation> representations = this.spectacleManager.getBest(spectacles);
+			
+			this.listView.setAdapter(new RepresentationArrayAdapter(getActivity(), R.id.spectacleItemName, representations));
+		}
 	}
 
 }
